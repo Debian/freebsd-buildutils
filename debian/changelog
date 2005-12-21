@@ -1,3 +1,9 @@
+freebsd6-buildutils (6.0-0.1) unstable; urgency=low
+
+  * FUCK!!
+
+ -- Robert Millan <rmh@aybabtu.com>  Fri, 16 Dec 2005 23:48:41 +0100
+
 freebsd5-buildutils (5.4-3) unstable; urgency=low
 
   * Fixed the MACHINE_ARCH variable on i386 (closes: bug#328604).

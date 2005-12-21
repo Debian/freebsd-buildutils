@@ -1,51 +1,50 @@
-diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
---- ports.old/Mk/bsd.port.mk	2004-12-28 17:45:04.000000000 +0100
-+++ ports/Mk/bsd.port.mk	2004-12-28 17:57:59.000000000 +0100
-@@ -490,7 +490,7 @@
+diff -ur ../foo.old/ports/Mk/bsd.port.mk ./ports/Mk/bsd.port.mk
+--- ../foo.old/ports/Mk/bsd.port.mk	2005-11-08 10:02:51.000000000 +0100
++++ ./ports/Mk/bsd.port.mk	2005-12-17 00:07:52.000000000 +0100
+@@ -473,7 +473,7 @@
  #				  files.
  #				  Default: ${.CURDIR}
  # PORTSDIR		- The root of the ports tree.
 -#				  Default: /usr/ports
-+#				  Default: /usr/share/freebsd5-buildutils/ports
++#				  Default: /usr/share/freebsd6-buildutils/ports
  # DISTDIR		- Where to search for and store copies of original sources
  #				  Default: ${PORTSDIR}/distfiles
  # PACKAGES		- A top level directory where all packages go (rather than
-@@ -922,76 +922,65 @@
+@@ -960,9 +960,9 @@
  .endif
  .endif
  
 -AWK?=		/usr/bin/awk
-+AWK?=		/usr/bin/freebsd-awk
++AWK?=		freebsd-awk
  BASENAME?=	/usr/bin/basename
 -BRANDELF?=	/usr/bin/brandelf
--.if exists(/usr/bin/bzip2)
-+BRANDELF?=	/usr/lib/freebsd/brandelf
++BRANDELF?=	freebsd-brandelf
+ .if exists(/usr/bin/bzip2)
  BZCAT?=		/usr/bin/bzcat
  BZIP2_CMD?=	/usr/bin/bzip2
--.else
--BZCAT?=		${LOCALBASE}/bin/bzcat
--BZIP2_CMD?=	${LOCALBASE}/bin/bzip2
--BZIP2DEPENDS=	yes
--.endif
+@@ -972,56 +972,56 @@
+ BZIP2DEPENDS=	yes
+ .endif
  CAT?=		/bin/cat
 -CHGRP?=		/usr/bin/chgrp
-+CHGRP?=		/bin/chgrp
++CHGRP?=		chgrp
  CHMOD?=		/bin/chmod
 -CHOWN?=		/usr/sbin/chown
-+CHOWN?=		/bin/chown
++CHOWN?=		chown
  COMM?=		/usr/bin/comm
  CP?=		/bin/cp
 -CPIO?=		/usr/bin/cpio
-+CPIO?=		/bin/cpio
++CPIO?=		cpio
  CUT?=		/usr/bin/cut
 -DC?=		/usr/bin/dc
 +DC?=		dc
  DIALOG?=	/usr/bin/dialog
+ DIFF?=		/usr/bin/diff
  DIRNAME?=	/usr/bin/dirname
 -EGREP?=		/usr/bin/egrep
 -EXPR?=		/bin/expr
-+EGREP?=		/bin/egrep
-+EXPR?=		/usr/bin/expr
++EGREP?=		egrep
++EXPR?=		expr
  FALSE?=		false				# Shell builtin
  FILE?=		/usr/bin/file
  FIND?=		/usr/bin/find
@@ -53,12 +52,12 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
 -GREP?=		/usr/bin/grep
 -GUNZIP_CMD?=	/usr/bin/gunzip -f
 -GZCAT?=		/usr/bin/gzcat
-+GREP?=		/bin/grep
-+GUNZIP_CMD?=	/bin/gunzip -f
-+GZCAT?=		/bin/gunzip -c
++GREP?=		grep
++GUNZIP_CMD?=	gunzip -f
++GZCAT?=		zcat
  GZIP?=		-9
 -GZIP_CMD?=	/usr/bin/gzip -nf ${GZIP}
-+GZIP_CMD?=	/bin/gzip -nf ${GZIP}
++GZIP_CMD?=	gzip -nf ${GZIP}
  HEAD?=		/usr/bin/head
  ID?=		/usr/bin/id
 -IDENT?=		/usr/bin/ident
@@ -68,7 +67,7 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
  LS?=		/bin/ls
  MKDIR?=		/bin/mkdir -p
 -MKTEMP?=	/usr/bin/mktemp
-+MKTEMP?=	/bin/mktemp
++MKTEMP?=	mktemp
  MV?=		/bin/mv
  OBJCOPY?=	/usr/bin/objcopy
  OBJDUMP?=	/usr/bin/objdump
@@ -76,11 +75,11 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
  PAX?=		/bin/pax
  PRINTF?=	/usr/bin/printf
 -REALPATH?=	/bin/realpath
-+REALPATH?=	/usr/bin/realpath
++REALPATH?=	realpath
  RM?=		/bin/rm
  RMDIR?=		/bin/rmdir
 -SED?=		/usr/bin/sed
-+SED?=		/bin/sed
++SED?=		sed
  SETENV?=	/usr/bin/env
  SH?=		/bin/sh
  SORT?=		/usr/bin/sort
@@ -92,21 +91,20 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
  TR?=		/usr/bin/tr
  TRUE?=		true				# Shell builtin
 -UNAME?=		/usr/bin/uname
--.if exists(/usr/bin/unzip)
-+UNAME?=		/bin/uname
++UNAME?=		uname
+ .if exists(/usr/bin/unzip)
  UNZIP_CMD?=	/usr/bin/unzip
--.else
--UNZIP_CMD?=	${LOCALBASE}/bin/unzip
--ZIPDEPENDS=	yes
--.endif
+ .else
+@@ -1030,7 +1030,7 @@
+ .endif
  WHICH?=		/usr/bin/which
  XARGS?=		/usr/bin/xargs
 -YACC?=		/usr/bin/yacc
-+YACC?=		/usr/bin/freebsd-yacc
++YACC?=		freebsd-yacc
  
  # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
  # or "true" if the make flag -s is given.  Use ECHO_CMD where you mean
-@@ -1006,7 +995,7 @@
+@@ -1045,7 +1045,7 @@
  
  # Get the architecture
  .if !defined(ARCH)
@@ -115,16 +113,16 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
  .endif
  
  # Kludge for pre-3.0 systems
-@@ -1159,7 +1148,7 @@
+@@ -1198,7 +1198,7 @@
  # These need to be absolute since we don't know how deep in the ports
  # tree we are and thus can't go relative.  They can, of course, be overridden
  # by individual Makefiles or local system make configuration.
 -PORTSDIR?=		/usr/ports
-+PORTSDIR?=		/usr/share/freebsd5-buildutils/ports
++PORTSDIR?=		/usr/share/freebsd6-buildutils/ports
  LOCALBASE?=		${DESTDIR}/usr/local
  X11BASE?=		${DESTDIR}/usr/X11R6
  LINUXBASE?=		${DESTDIR}/compat/linux
-@@ -1843,16 +1832,8 @@
+@@ -1836,15 +1836,7 @@
  # Miscellaneous overridable commands:
  GMAKE?=			gmake
  XMKMF?=			xmkmf -a
@@ -137,13 +135,11 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
 -.else
 -MD5?=			md5
 -.endif
--MD5_FILE?=		${MASTERDIR}/distinfo
-+MD5?=			/usr/bin/md5sum
-+MD5_FILE?=	e${MASTERDIR}/distinfo
- 
- MAKE_FLAGS?=	-f
- MAKEFILE?=		Makefile
-@@ -1971,7 +1952,7 @@
++MD5?=			md5sum
+ .if exists(/sbin/sha256)
+ SHA256?=		/sbin/sha256
+ .elif exists(${LOCALBASE}/sbin/sha256)
+@@ -1969,7 +1961,7 @@
  MTREE_FILE=	/etc/mtree/BSD.local.dist
  .endif
  .endif
@@ -152,9 +148,9 @@ diff -ur ports.old/Mk/bsd.port.mk ports/Mk/bsd.port.mk
  MTREE_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
  
  # Determine whether or not we can use rootly owner/group functions.
-diff -ur ports.old/Mk/bsd.port.subdir.mk ports/Mk/bsd.port.subdir.mk
---- ports.old/Mk/bsd.port.subdir.mk	2004-12-28 17:45:04.000000000 +0100
-+++ ports/Mk/bsd.port.subdir.mk	2004-12-28 17:53:06.000000000 +0100
+diff -ur ../foo.old/ports/Mk/bsd.port.subdir.mk ./ports/Mk/bsd.port.subdir.mk
+--- ../foo.old/ports/Mk/bsd.port.subdir.mk	2005-11-08 10:02:51.000000000 +0100
++++ ./ports/Mk/bsd.port.subdir.mk	2005-12-16 23:59:10.000000000 +0100
 @@ -48,10 +48,10 @@
  
  .if !defined(NOPRECIOUSMAKEVARS)
@@ -191,34 +187,34 @@ diff -ur ports.old/Mk/bsd.port.subdir.mk ports/Mk/bsd.port.subdir.mk
  .endif
  
  ECHO_MSG?=	echo
-@@ -254,7 +254,7 @@
+@@ -255,7 +255,7 @@
  .if (${OPSYS} == "NetBSD")
  PORTSDIR ?= /usr/opt
  .else
 -PORTSDIR ?= /usr/ports
-+PORTSDIR ?= /usr/share/freebsd5-buildutils/ports
++PORTSDIR ?= /usr/share/freebsd6-buildutils/ports
  .endif
  TEMPLATES ?= ${PORTSDIR}/Templates
  .if defined(PORTSTOP)
-diff -ur src.old/share/mk/bsd.port.subdir.mk src/share/mk/bsd.port.subdir.mk
---- src.old/share/mk/bsd.port.subdir.mk 2004-07-02 22:47:18.000000000 +0200
-+++ src/share/mk/bsd.port.subdir.mk     2004-12-28 00:47:40.000000000 +0100
+diff -ur ../foo.old/src/share/mk/bsd.port.mk ./src/share/mk/bsd.port.mk
+--- ../foo.old/src/share/mk/bsd.port.mk	2004-07-02 22:47:18.000000000 +0200
++++ ./src/share/mk/bsd.port.mk	2005-12-16 23:59:10.000000000 +0100
 @@ -1,6 +1,6 @@
- # $FreeBSD: src/share/mk/bsd.port.subdir.mk,v 1.31 2004/07/02 20:47:18 eik Exp $
+ # $FreeBSD: ./src/share/mk/bsd.port.mk,v 1.307 2004/07/02 20:47:18 eik Exp $
  
 -PORTSDIR?=	/usr/ports
-+PORTSDIR?=	/usr/share/freebsd5-buildutils/ports
- BSDPORTSUBDIRMK?=	${PORTSDIR}/Mk/bsd.port.subdir.mk
- 
- .include "${BSDPORTSUBDIRMK}"
-diff -ur src.old/share/mk/bsd.port.mk src.old/share/mk/bsd.port.mk
---- src.old/share/mk/bsd.port.mk	2004-07-02 22:47:18.000000000 +0200
-+++ src/share/mk/bsd.port.mk	2004-12-28 00:47:40.000000000 +0100
-@@ -1,6 +1,6 @@
- # $FreeBSD: src/share/mk/bsd.port.mk,v 1.307 2004/07/02 20:47:18 eik Exp $
- 
--PORTSDIR?=	/usr/ports
-+PORTSDIR?=	/usr/share/freebsd5-buildutils/ports
++PORTSDIR?=	/usr/share/freebsd6-buildutils/ports
  BSDPORTMK?=	${PORTSDIR}/Mk/bsd.port.mk
  
  .include <bsd.own.mk>
+diff -ur ../foo.old/src/share/mk/bsd.port.subdir.mk ./src/share/mk/bsd.port.subdir.mk
+--- ../foo.old/src/share/mk/bsd.port.subdir.mk	2004-07-02 22:47:18.000000000 +0200
++++ ./src/share/mk/bsd.port.subdir.mk	2005-12-16 23:59:10.000000000 +0100
+@@ -1,6 +1,6 @@
+ # $FreeBSD: ./src/share/mk/bsd.port.subdir.mk,v 1.31 2004/07/02 20:47:18 eik Exp $
+ 
+-PORTSDIR?=	/usr/ports
++PORTSDIR?=	/usr/share/freebsd6-buildutils/ports
+ BSDPORTSUBDIRMK?=	${PORTSDIR}/Mk/bsd.port.subdir.mk
+ 
+ .include "${BSDPORTSUBDIRMK}"

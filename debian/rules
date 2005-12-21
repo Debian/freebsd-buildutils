@@ -16,14 +16,17 @@ CFLAGS=-O2 -g -Wall -DMACHINE_ARCH='\"$(DEB_HOST_ARCH_CPU)\"'
 MAKE_BUILD_FLAGS= COPTS="$(CFLAGS)" NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO
 YACC=$(CURDIR)/build-tree/src/usr.bin/yacc/yacc
 
+package=freebsd6-buildutils
+
 unpack: unpack-stamp
 unpack-stamp:
 	mkdir build-tree
 	tar -C build-tree -xzf src.tar.gz
 	find build-tree -type d -name CVS | xargs rm -rf
-	cd build-tree && \
+	find build-tree -type f | (while read i ; do sed -i $$i -e "/^__FBSDID/d" ; done)
+	set -e ; cd build-tree && \
 		for i in $(CURDIR)/debian/patches/* ; do \
-		  cat $$i | patch -p0 ; \
+		  patch -p0 < $$i ; \
 		done
 	touch unpack-stamp
 
@@ -34,20 +37,11 @@ build-stamp:
 	cd build-tree/src/usr.bin/yacc ; \
 		$(PMAKE) $(MAKE_BUILD_FLAGS)
 
-	cd build-tree/src/contrib/one-true-awk ; \
-		$(YACC) -d -o awkgram.c ../../contrib/one-true-awk/awkgram.y
-	cd build-tree/src/usr.bin/awk ; \
-		ln -sf ../../contrib/one-true-awk/awkgram.h ytab.h ; \
-		$(PMAKE) $(MAKE_BUILD_FLAGS)
-
 	cd build-tree/src/usr.bin/cksum ; $(PMAKE) $(MAKE_BUILD_FLAGS)
 
 	cd build-tree/src/usr.bin/lex ; \
 		$(PMAKE) bootstrap ; \
 		$(YACC) -d -o parse.c parse.y ; \
-		$(PMAKE) $(MAKE_BUILD_FLAGS)
-
-	cd build-tree/src/usr.bin/make ; \
 		$(PMAKE) $(MAKE_BUILD_FLAGS)
 
 	cd build-tree/src/usr.bin/mkdep ; $(PMAKE) $(MAKE_BUILD_FLAGS)
@@ -71,42 +65,38 @@ install: build
 	
 	for i in awk cksum lex make mkdep yacc file2c brandelf ; do \
 		cd $(CURDIR)/build-tree/src/usr.bin/$$i; \
-		$(PMAKE) install DESTDIR=$(CURDIR)/debian/freebsd5-buildutils BINDIR=/usr/bin ; \
+		$(PMAKE) install DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin ; \
 	done
 	for i in mtree config ; do \
 		cd $(CURDIR)/build-tree/src/usr.sbin/$$i; \
-		$(PMAKE) install DESTDIR=$(CURDIR)/debian/freebsd5-buildutils BINDIR=/usr/sbin ; \
+		$(PMAKE) install DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/sbin ; \
 	done
 	cd build-tree/src/share/mk ; \
 		$(PMAKE) install \
-		DESTDIR=$(CURDIR)/debian/freebsd5-buildutils BINDIR=/usr/share
+		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/share
 
 	cp -af $(CURDIR)/build-tree/ports \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/share/freebsd5-buildutils
+		$(CURDIR)/debian/$(package)/usr/share/$(package)
 
 	# remove trash
-	rm -rf 	$(CURDIR)/debian/freebsd5-buildutils/usr/include \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/share/man \
-		$(CURDIR)/debian/freebsd5-buildutils/var
-
-	# rename awk
-	mv $(CURDIR)/debian/freebsd5-buildutils/usr/bin/nawk \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/bin/awk
+	rm -rf 	$(CURDIR)/debian/$(package)/usr/include \
+		$(CURDIR)/debian/$(package)/usr/share/man \
+		$(CURDIR)/debian/$(package)/var
 
 	# relocate binaries
 	mv \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/bin/* \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/sbin/* \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/lib/freebsd/
-	for i in `cd $(CURDIR)/debian/freebsd5-buildutils/usr/lib/freebsd && ls` ; do \
-		ln -s ../lib/freebsd/$$i \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/bin/freebsd-$$i ; \
+		$(CURDIR)/debian/$(package)/usr/bin/* \
+		$(CURDIR)/debian/$(package)/usr/sbin/* \
+		$(CURDIR)/debian/$(package)/usr/lib/freebsd6/
+	for i in `cd $(CURDIR)/debian/$(package)/usr/lib/freebsd && ls` ; do \
+		ln -s ../lib/freebsd6/$$i \
+		$(CURDIR)/debian/$(package)/usr/bin/freebsd-$$i ; \
 	done
-	rmdir $(CURDIR)/debian/freebsd5-buildutils/usr/sbin
+	rmdir $(CURDIR)/debian/$(package)/usr/sbin
 
 	# make stuff
-	mv $(CURDIR)/debian/freebsd5-buildutils/usr/share/mk \
-		$(CURDIR)/debian/freebsd5-buildutils/usr/share/freebsd5-buildutils/mk
+	mv $(CURDIR)/debian/$(package)/usr/share/mk \
+		$(CURDIR)/debian/$(package)/usr/share/$(package)/mk
 
 clean:
 	dh_testdir

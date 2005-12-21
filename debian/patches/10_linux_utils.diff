@@ -1,6 +1,7 @@
---- ports.old/Mk/bsd.port.mk	2005-02-04 08:40:35.000000000 +0800
-+++ ports/Mk/bsd.port.mk	2005-04-24 21:16:26.205492960 +0800
-@@ -2995,7 +2995,7 @@
+diff -ur ../foo.old/ports/Mk/bsd.port.mk ./ports/Mk/bsd.port.mk
+--- ../foo.old/ports/Mk/bsd.port.mk	2005-12-17 00:08:37.000000000 +0100
++++ ./ports/Mk/bsd.port.mk	2005-12-17 00:08:42.000000000 +0100
+@@ -2994,7 +2994,7 @@
  .if !defined(DISABLE_VULNERABILITIES) && !defined(PACKAGE_BUILDING)
  	@if [ -f "${AUDITFILE}" ]; then \
  		audit_created=`${_EXTRACT_AUDITFILE} | \
@@ -9,7 +10,7 @@
  		audit_expiry=`/bin/date -u -v-14d "+%Y%m%d"`; \
  		if [ "$$audit_created" -lt "$$audit_expiry" ]; then \
  			${ECHO_MSG} "===>  WARNING: Vulnerability database out of date, checking anyway"; \
-@@ -3027,7 +3027,7 @@
+@@ -3024,7 +3024,7 @@
  	@(cd ${_DISTDIR}; \
  	 ${_MASTER_SITES_ENV} ; \
  	 for _file in ${DISTFILES}; do \
@@ -18,7 +19,7 @@
  		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
  		force_fetch=false; \
  		filebasename=`${BASENAME} $$file`; \
-@@ -3094,7 +3094,7 @@
+@@ -3091,7 +3091,7 @@
  	@(cd ${_DISTDIR}; \
  	 ${_PATCH_SITES_ENV} ; \
  	 for _file in ${PATCHFILES}; do \
@@ -27,7 +28,7 @@
  		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
  		force_fetch=false; \
  		filebasename=`${BASENAME} $$file`; \
-@@ -3991,7 +3991,7 @@
+@@ -3988,7 +3988,7 @@
  	@(cd ${_DISTDIR}; \
  	 ${_MASTER_SITES_ENV} ; \
  	 for _file in ${DISTFILES}; do \
@@ -36,7 +37,7 @@
  		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
  		if [ ! -f $$file -a ! -f `${BASENAME} $$file` ]; then \
  			if [ ! -z "$$select" ] ; then \
-@@ -4023,7 +4023,7 @@
+@@ -4020,7 +4020,7 @@
  	@(cd ${_DISTDIR}; \
  	 ${_PATCH_SITES_ENV} ; \
  	 for _file in ${PATCHFILES}; do \
@@ -45,16 +46,7 @@
  		select=`${ECHO_CMD} $${_file#$${file}} | ${SED} -e 's/^://' -e 's/,/ /g'` ; \
  		if [ ! -f $$file -a ! -f `${BASENAME} $$file` ]; then \
  			if [ ! -z "$$select" ] ; then \
-@@ -4093,7 +4093,7 @@
- 		(cd ${DISTDIR}; OK=""; \
- 		  for file in ${_CKSUMFILES}; do \
- 			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
--			CKSUM=`${MD5} < $$file`; \
-+			CKSUM=`${MD5} < $$file | awk '{print $$1}'`; \
- 			CKSUM2=`${GREP} "^MD5 ($$pattern)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
- 			if [ -z "$$CKSUM2" ]; then \
- 				${ECHO_MSG} "=> No checksum recorded for $$file."; \
-@@ -4747,7 +4747,7 @@
+@@ -4843,7 +4843,7 @@
  	done
  	@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
  .endif
@@ -63,9 +55,9 @@
  		${ECHO_CMD} "@unexec rm -f %D/$${i%.gz} %D/$${i%.gz}.gz" >> ${TMPPLIST}; \
  	done
  .endfor
-@@ -4781,7 +4781,7 @@
+@@ -4877,7 +4877,7 @@
  add-plist-docs:
- .if defined(PORTDOCS)
+ .if defined(PORTDOCS) && !defined(NOPORTDOCS)
  	@if ${EGREP} -qe '^@cw?d' ${TMPPLIST} && \
 -		[ "`${SED} -En -e '/^@cw?d[ 	]*/s,,,p' ${TMPPLIST} | ${TAIL} -n 1`" != "${PREFIX}" ]; then \
 +		[ "`${SED} -n -e '/^@cw?d[ 	]*/s,,,p' ${TMPPLIST} | ${TAIL} -n 1`" != "${PREFIX}" ]; then \
