@@ -8,8 +8,8 @@ Build-Depends: debhelper (>= 7), flex, bison,
  pkg-config,
  freebsd-glue,
  byacc (>= 20120115~),
-Vcs-Browser: http://svn.debian.org/wsvn/glibc-bsd/trunk/freebsd-buildutils/
-Vcs-Svn: svn://svn.debian.org/glibc-bsd/trunk/freebsd-buildutils/
+Vcs-Browser: http://anonscm.debian.org/viewvc/glibc-bsd/trunk/freebsd-buildutils/
+Vcs-Svn: svn://anonscm.debian.org/glibc-bsd/trunk/freebsd-buildutils/
 Standards-Version: 3.9.2
 
 Package: freebsd-buildutils
