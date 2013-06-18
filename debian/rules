@@ -73,6 +73,7 @@ get-orig-source:
 		usr.bin/mkdep \
 		usr.bin/brandelf \
 		usr.sbin/btxld \
+		usr.sbin/config \
 		usr.sbin/kgzip \
 		usr.sbin/mtree \
 	; do \
@@ -109,6 +110,9 @@ build-stamp: unpack-stamp
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/file2c
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/brandelf
 
+	PATH=$(CURDIR)/build-tree/src/usr.bin/file2c:$(PATH) \
+		$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/config
+
 	touch build-stamp
 
 install: build
@@ -121,7 +125,7 @@ install: build
 	  $(PMAKE) -C $(CURDIR)/build-tree/src/usr.bin/$$i install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
-	for i in mtree ; do \
+	for i in mtree config ; do \
 	  $(PMAKE) -C $(CURDIR)/build-tree/src/usr.sbin/$$i install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done

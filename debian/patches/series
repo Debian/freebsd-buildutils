@@ -19,3 +19,4 @@ yacc_is_byacc.diff
 22_ld_as_needed.diff
 disable_wsystem_headers.diff
 nostrip.diff
+config_ldflags.diff
