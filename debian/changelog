@@ -7,8 +7,9 @@ freebsd-buildutils (10~svn251967-1) UNRELEASED; urgency=low
 
   [ Robert Millan ]
   * Add freebsd-config back. (Closes: #712633)
+  * Ease flex build-dependency.
 
- -- Robert Millan <rmh@debian.org>  Wed, 19 Jun 2013 01:12:32 +0200
+ -- Robert Millan <rmh@debian.org>  Wed, 19 Jun 2013 12:23:55 +0200
 
 freebsd-buildutils (10~svn237137-1) experimental; urgency=low
 
