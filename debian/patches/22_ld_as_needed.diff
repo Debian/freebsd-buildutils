@@ -10,13 +10,14 @@
  	util.c var.c
 --- a/src/usr.sbin/mtree/Makefile
 +++ b/src/usr.sbin/mtree/Makefile
-@@ -7,5 +7,6 @@
- MAN=	mtree.8 mtree.5
+@@ -9,6 +9,7 @@
+ MAN=	fmtree.8 mtree.5
  SRCS=	compare.c crc.c create.c excludes.c misc.c mtree.c spec.c verify.c
  SRCS+=	specspec.c
 +LDADD+=	-lbsd
  
- .include <bsd.prog.mk>
+ 
+ .if ${MK_NMTREE} == "no"
 --- a/src/usr.bin/brandelf/Makefile
 +++ b/src/usr.bin/brandelf/Makefile
 @@ -1,5 +1,6 @@

@@ -65,37 +65,31 @@
  .PHONY: ${INSTALLINFODIRS}
 --- a/src/share/mk/bsd.lib.mk
 +++ b/src/share/mk/bsd.lib.mk
-@@ -135,9 +135,9 @@
+@@ -156,9 +156,9 @@
  	@${ECHO} building static ${LIB} library
  	@rm -f ${.TARGET}
  .if !defined(NM)
--	@${AR} cq ${.TARGET} `lorder ${OBJS} ${STATICOBJS} | tsort -q` ${ARADD}
-+	@${AR} cq ${.TARGET} `lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
+-	@${AR} ${ARFLAGS} ${.TARGET} `lorder ${OBJS} ${STATICOBJS} | tsort -q` ${ARADD}
++	@${AR} ${ARFLAGS} ${.TARGET} `lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
  .else
--	@${AR} cq ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort -q` ${ARADD}
-+	@${AR} cq ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
+-	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort -q` ${ARADD}
++	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
  .endif
  	${RANLIB} ${.TARGET}
  .endif
-@@ -152,9 +152,9 @@
+@@ -173,9 +173,9 @@
  	@${ECHO} building profiled ${LIB} library
  	@rm -f ${.TARGET}
  .if !defined(NM)
--	@${AR} cq ${.TARGET} `lorder ${POBJS} | tsort -q` ${ARADD}
-+	@${AR} cq ${.TARGET} `lorder ${POBJS} | tsort` ${ARADD}
+-	@${AR} ${ARFLAGS} ${.TARGET} `lorder ${POBJS} | tsort -q` ${ARADD}
++	@${AR} ${ARFLAGS} ${.TARGET} `lorder ${POBJS} | tsort` ${ARADD}
  .else
--	@${AR} cq ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort -q` ${ARADD}
-+	@${AR} cq ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort` ${ARADD}
+-	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort -q` ${ARADD}
++	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort` ${ARADD}
  .endif
  	${RANLIB} ${.TARGET}
  .endif
-@@ -180,16 +180,16 @@
- 	@${ECHO} building shared library ${SHLIB_NAME}
- 	@rm -f ${.TARGET} ${SHLIB_LINK}
- .if defined(SHLIB_LINK)
--	@ln -fs ${.TARGET} ${SHLIB_LINK}
-+	@ln -fs ${SHLIBDIR}/${.TARGET} ${SHLIB_LINK}
- .endif
+@@ -206,11 +206,11 @@
  .if !defined(NM)
  	@${CC} ${LDFLAGS} ${SSP_CFLAGS} ${SOLINKOPTS} \
  	    -o ${.TARGET} -Wl,-soname,${SONAME} \
@@ -109,7 +103,7 @@
  .endif
  .if ${MK_CTF} != "no"
  	${CTFMERGE} ${CTFFLAGS} -o ${.TARGET} ${SOBJS}
-@@ -259,11 +259,11 @@
+@@ -290,11 +290,11 @@
  .ORDER: beforeinstall _libinstall
  _libinstall:
  .if defined(LIB) && !empty(LIB) && ${MK_INSTALLLIB} != "no"
@@ -125,33 +119,21 @@
  .if defined(SHLIB_NAME)
 --- a/src/share/mk/bsd.man.mk
 +++ b/src/share/mk/bsd.man.mk
-@@ -211,12 +211,12 @@
- 			[123]) echo "warn: empty MLINK: $$1 $$2 $$3"; break;; \
- 		esac; \
- 		name=$$1; shift; sect=$$1; shift; \
--		l=${DESTDIR}${MANDIR}$${sect}${MANSUBDIR}/$$name; \
-+		l=${MANDIR}$${sect}${MANSUBDIR}/$$name; \
- 		name=$$1; shift; sect=$$1; shift; \
+@@ -216,7 +216,7 @@
  		t=${DESTDIR}${MANDIR}$${sect}${MANSUBDIR}/$$name; \
  		${ECHO} $${t}${ZEXT} -\> $${l}${ZEXT}; \
  		rm -f $${t} $${t}${MCOMPRESS_EXT}; \
--		ln $${l}${ZEXT} $${t}${ZEXT}; \
-+		ln -s $${l}${ZEXT} $${t}${ZEXT}; \
+-		${INSTALL_LINK} $${l}${ZEXT} $${t}${ZEXT}; \
++		${INSTALL_SYMLINK} $${l}${ZEXT} $${t}${ZEXT}; \
  	done
  .if defined(MANBUILDCAT) && !empty(MANBUILDCAT)
  	@set ${MLINKS:C/\.([^.]*)$/.\1 \1/}; \
-@@ -226,12 +226,12 @@
- 			[123]) echo "warn: empty MLINK: $$1 $$2 $$3"; break;; \
- 		esac; \
- 		name=$$1; shift; sect=$$1; shift; \
--		l=${DESTDIR}${CATDIR}$${sect}${MANSUBDIR}/$$name; \
-+		l=${CATDIR}$${sect}${MANSUBDIR}/$$name; \
- 		name=$$1; shift; sect=$$1; shift; \
+@@ -231,7 +231,7 @@
  		t=${DESTDIR}${CATDIR}$${sect}${MANSUBDIR}/$$name; \
  		${ECHO} $${t}${ZEXT} -\> $${l}${ZEXT}; \
  		rm -f $${t} $${t}${MCOMPRESS_EXT}; \
--		ln $${l}${ZEXT} $${t}${ZEXT}; \
-+		ln -s $${l}${ZEXT} $${t}${ZEXT}; \
+-		${INSTALL_LINK} $${l}${ZEXT} $${t}${ZEXT}; \
++		${INSTALL_SYMLINK} $${l}${ZEXT} $${t}${ZEXT}; \
  	done
  .endif
  .endif
@@ -166,7 +148,7 @@
  #
  # BINMODE	Binary mode. [555]
  #
-@@ -58,7 +58,7 @@
+@@ -63,7 +63,7 @@
  #
  # SHAREOWN	ASCII text file owner. [root]
  #
@@ -175,7 +157,7 @@
  #
  # SHAREMODE	ASCII text file mode. [${NOBINMODE}]
  #
-@@ -124,7 +124,7 @@
+@@ -129,7 +129,7 @@
  
  # Binaries
  BINOWN?=	root
@@ -184,7 +166,7 @@
  BINMODE?=	555
  NOBINMODE?=	444
  
-@@ -151,7 +151,7 @@
+@@ -159,7 +159,7 @@
  # Share files
  SHAREDIR?=	/usr/share
  SHAREOWN?=	root
@@ -193,6 +175,17 @@
  SHAREMODE?=	${NOBINMODE}
  
  CONFDIR?=	/etc
+@@ -195,8 +195,8 @@
+ HRDLINK?=	-l h
+ SYMLINK?=	-l s
+ 
+-INSTALL_LINK?=		${INSTALL} ${HRDLINK}
+-INSTALL_SYMLINK?=	${INSTALL} ${SYMLINK}
++INSTALL_LINK?=		ln
++INSTALL_SYMLINK?=	ln -s
+ 
+ # Common variables
+ .if !defined(DEBUG_FLAGS)
 --- a/src/share/mk/sys.mk
 +++ b/src/share/mk/sys.mk
 @@ -1,8 +1,7 @@
@@ -205,3 +198,15 @@
  
  .if !defined(%POSIX)
  #
+--- a/src/share/mk/bsd.compiler.mk
++++ b/src/share/mk/bsd.compiler.mk
+@@ -14,7 +14,8 @@
+ .  elif ${_COMPILER_VERSION:Mclang}
+ COMPILER_TYPE:=	clang
+ .  else
+-.error Unable to determine compiler type for ${CC}.  Consider setting COMPILER_TYPE.
++# Fallback to gcc in order to support CC="cc" case
++COMPILER_TYPE:= gcc
+ .  endif
+ .  undef _COMPILER_VERSION
+ . endif

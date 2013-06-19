@@ -1,6 +1,6 @@
 --- a/src/usr.sbin/config/Makefile
 +++ b/src/usr.sbin/config/Makefile
-@@ -14,6 +14,8 @@
+@@ -16,6 +16,8 @@
  DPADD=	${LIBL} ${LIBSBUF}
  LDADD=	-ll -lsbuf
  

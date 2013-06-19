@@ -1,7 +1,6 @@
 # Patches from (or merged in) upstream
 
 # Patches that are in good shape for merging upstream
-make_bootstrap_fix.diff
 yacc_is_byacc.diff
 
 # Other patches
