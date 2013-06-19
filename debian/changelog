@@ -1,4 +1,4 @@
-freebsd-buildutils (10~svn251967-1) UNRELEASED; urgency=low
+freebsd-buildutils (10~svn251967-1) experimental; urgency=low
 
   * New upstream snapshot.
 
