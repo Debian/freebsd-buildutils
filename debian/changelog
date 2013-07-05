@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn251967-2) experimental; urgency=low
+
+  * Depend on suitable version of freebsd-glue (for _SAFE macros).
+
+ -- Robert Millan <rmh@debian.org>  Fri, 05 Jul 2013 23:06:31 +0200
+
 freebsd-buildutils (10~svn251967-1) experimental; urgency=low
 
   * New upstream snapshot.
