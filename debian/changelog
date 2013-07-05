@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn251967-3) experimental; urgency=low
+
+  * Depend on m4 as it's now required by lex (no pun intended).
+
+ -- Robert Millan <rmh@debian.org>  Fri, 05 Jul 2013 23:25:44 +0200
+
 freebsd-buildutils (10~svn251967-2) experimental; urgency=low
 
   * Depend on suitable version of freebsd-glue (for _SAFE macros).
