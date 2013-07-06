@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn251967-4) UNRELEASED; urgency=low
+
+  * Bring back MK_NCP (needed by kfreebsd-9).
+
+ -- Robert Millan <rmh@debian.org>  Sat, 06 Jul 2013 22:49:13 +0200
+
 freebsd-buildutils (10~svn251967-3) experimental; urgency=low
 
   * Depend on m4 as it's now required by lex (no pun intended).

@@ -1,0 +1,25 @@
+
+MK_NCP was removed from HEAD in rev 241629, but kfreebsd-9 still
+uses it (in sys/modules/Makefile).
+
+--- a/src/share/mk/bsd.own.mk
++++ b/src/share/mk/bsd.own.mk
+@@ -316,6 +316,7 @@
+     MAILWRAPPER \
+     MAKE \
+     MAN \
++    NCP \
+     NDIS \
+     NETCAT \
+     NETGRAPH \
+@@ -516,6 +517,10 @@
+ MK_GROFF:=	no
+ .endif
+ 
++.if ${MK_IPX} == "no"
++MK_NCP:=	no
++.endif
++
+ .if ${MK_MAIL} == "no"
+ MK_MAILWRAPPER:= no
+ MK_SENDMAIL:=	no
