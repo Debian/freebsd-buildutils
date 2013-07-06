@@ -1,4 +1,4 @@
-freebsd-buildutils (10~svn251967-4) UNRELEASED; urgency=low
+freebsd-buildutils (10~svn251967-4) experimental; urgency=low
 
   * Bring back MK_NCP (needed by kfreebsd-9).
 
