@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn251967-6) unstable; urgency=low
+
+  * Bump freebsd-glue B-D to fix FTBFS.
+
+ -- Robert Millan <rmh@debian.org>  Mon, 22 Jul 2013 21:57:31 +0200
+
 freebsd-buildutils (10~svn251967-5) unstable; urgency=low
 
   * Reupload.

@@ -6,7 +6,7 @@ Uploaders: Aurelien Jarno <aurel32@debian.org>, Guillem Jover <guillem@debian.or
 Build-Depends: debhelper (>= 7), flex | flex-old, bison,
  libbsd-dev (>= 0.3.0),
  pkg-config,
- freebsd-glue (>= 0.0.6),
+ freebsd-glue (>= 0.0.9),
  byacc (>= 20120115~),
 # for freebsd-config
  libsbuf-dev,
