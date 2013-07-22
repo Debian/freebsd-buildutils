@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn251967-5) unstable; urgency=low
+
+  * Reupload.
+
+ -- Robert Millan <rmh@debian.org>  Mon, 22 Jul 2013 20:10:42 +0200
+
 freebsd-buildutils (10~svn251967-4) experimental; urgency=low
 
   * Bring back MK_NCP (needed by kfreebsd-9).
