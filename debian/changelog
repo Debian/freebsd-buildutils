@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn253832-1) UNRELEASED; urgency=low
+
+  * New upstream snapshot (provides MK_USB_GADGET_EXAMPLES).
+
+ -- Robert Millan <rmh@debian.org>  Wed, 31 Jul 2013 15:57:19 +0200
+
 freebsd-buildutils (10~svn251967-6) unstable; urgency=low
 
   * Bump freebsd-glue B-D to fix FTBFS.

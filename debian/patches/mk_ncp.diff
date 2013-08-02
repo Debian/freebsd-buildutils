@@ -4,7 +4,7 @@ uses it (in sys/modules/Makefile).
 
 --- a/src/share/mk/bsd.own.mk
 +++ b/src/share/mk/bsd.own.mk
-@@ -316,6 +316,7 @@
+@@ -317,6 +317,7 @@
      MAILWRAPPER \
      MAKE \
      MAN \
@@ -12,7 +12,7 @@ uses it (in sys/modules/Makefile).
      NDIS \
      NETCAT \
      NETGRAPH \
-@@ -516,6 +517,10 @@
+@@ -517,6 +518,10 @@
  MK_GROFF:=	no
  .endif
  
