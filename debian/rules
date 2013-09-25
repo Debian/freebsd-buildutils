@@ -67,6 +67,7 @@ get-orig-source:
 	for i in \
 		share/mk \
 		usr.bin/cksum \
+		usr.bin/elfdump \
 		usr.bin/file2c \
 		usr.bin/lex \
 		contrib/flex \
