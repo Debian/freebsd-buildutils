@@ -1,3 +1,9 @@
+freebsd-buildutils (10~svn253832-2) UNRELEASED; urgency=low
+
+  * Remove myself from Uploaders.
+
+ -- Guillem Jover <guillem@debian.org>  Wed, 16 Oct 2013 21:33:29 +0200
+
 freebsd-buildutils (10~svn253832-1) unstable; urgency=low
 
   * New upstream snapshot (provides MK_USB_GADGET_EXAMPLES).
