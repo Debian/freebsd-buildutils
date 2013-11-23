@@ -2,6 +2,7 @@ freebsd-buildutils (10~svn258496-1) UNRELEASED; urgency=low
 
   * New upstream snapshot.
     - Refresh all patches.
+    - Add aicasm. It is now required by kernel builds.
 
   [ Guillem Jover ]
   * Remove myself from Uploaders.

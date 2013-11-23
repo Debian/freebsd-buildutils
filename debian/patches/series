@@ -4,7 +4,7 @@
 mk_ncp.diff
 yacc_is_byacc.diff
 
-# Other patches
+# Other patches that might or might not be mergeable
 00_upstream.diff
 01_make_fixes.diff
 03_glibc.diff
@@ -20,3 +20,6 @@ yacc_is_byacc.diff
 disable_wsystem_headers.diff
 nostrip.diff
 config_ldflags.diff
+
+# Patches that are likely to be Debian-specific
+aicasm.diff
