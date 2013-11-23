@@ -1,4 +1,4 @@
-freebsd-buildutils (10~svn258496-1) UNRELEASED; urgency=low
+freebsd-buildutils (10~svn258496-1) unstable; urgency=low
 
   * New upstream snapshot.
     - Refresh all patches.
