@@ -65,7 +65,7 @@
  .PHONY: ${INSTALLINFODIRS}
 --- a/src/share/mk/bsd.lib.mk
 +++ b/src/share/mk/bsd.lib.mk
-@@ -156,9 +156,9 @@
+@@ -168,9 +168,9 @@
  	@${ECHO} building static ${LIB} library
  	@rm -f ${.TARGET}
  .if !defined(NM)
@@ -77,7 +77,7 @@
  .endif
  	${RANLIB} ${.TARGET}
  .endif
-@@ -173,9 +173,9 @@
+@@ -185,9 +185,9 @@
  	@${ECHO} building profiled ${LIB} library
  	@rm -f ${.TARGET}
  .if !defined(NM)
@@ -89,7 +89,7 @@
  .endif
  	${RANLIB} ${.TARGET}
  .endif
-@@ -206,11 +206,11 @@
+@@ -218,11 +218,11 @@
  .if !defined(NM)
  	@${CC} ${LDFLAGS} ${SSP_CFLAGS} ${SOLINKOPTS} \
  	    -o ${.TARGET} -Wl,-soname,${SONAME} \
@@ -103,20 +103,29 @@
  .endif
  .if ${MK_CTF} != "no"
  	${CTFMERGE} ${CTFFLAGS} -o ${.TARGET} ${SOBJS}
-@@ -290,11 +290,11 @@
+@@ -302,11 +302,11 @@
  .ORDER: beforeinstall _libinstall
  _libinstall:
  .if defined(LIB) && !empty(LIB) && ${MK_INSTALLLIB} != "no"
 -	${INSTALL} -C -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
 +	${INSTALL} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
- 	    ${_INSTALLFLAGS} lib${LIB}.a ${DESTDIR}${LIBDIR}
+ 	    ${_INSTALLFLAGS} lib${LIB}.a ${DESTDIR}${_LIBDIR}
  .endif
  .if ${MK_PROFILE} != "no" && defined(LIB) && !empty(LIB)
 -	${INSTALL} -C -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
 +	${INSTALL} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
- 	    ${_INSTALLFLAGS} lib${LIB}_p.a ${DESTDIR}${LIBDIR}
+ 	    ${_INSTALLFLAGS} lib${LIB}_p.a ${DESTDIR}${_LIBDIR}
  .endif
  .if defined(SHLIB_NAME)
+@@ -343,7 +343,7 @@
+ 	sed -e 's,@@SHLIB@@,${_LDSCRIPTROOT}${_SHLIBDIR}/${SHLIB_NAME},g' \
+ 	    -e 's,@@LIBDIR@@,${_LDSCRIPTROOT}${_LIBDIR},g' \
+ 	    ${.CURDIR}/${SHLIB_LDSCRIPT} > ${DESTDIR}${_LIBDIR}/${SHLIB_LINK:R}.ld
+-	${INSTALL} -S -C -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
++	${INSTALL} -S -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
+ 	    ${_INSTALLFLAGS} ${DESTDIR}${_LIBDIR}/${SHLIB_LINK:R}.ld \
+ 	    ${DESTDIR}${_LIBDIR}/${SHLIB_LINK}
+ 	rm -f ${DESTDIR}${_LIBDIR}/${SHLIB_LINK:R}.ld
 --- a/src/share/mk/bsd.man.mk
 +++ b/src/share/mk/bsd.man.mk
 @@ -216,7 +216,7 @@
@@ -148,7 +157,7 @@
  #
  # BINMODE	Binary mode. [555]
  #
-@@ -63,7 +63,7 @@
+@@ -65,7 +65,7 @@
  #
  # SHAREOWN	ASCII text file owner. [root]
  #
@@ -157,7 +166,7 @@
  #
  # SHAREMODE	ASCII text file mode. [${NOBINMODE}]
  #
-@@ -129,7 +129,7 @@
+@@ -131,7 +131,7 @@
  
  # Binaries
  BINOWN?=	root
@@ -166,7 +175,7 @@
  BINMODE?=	555
  NOBINMODE?=	444
  
-@@ -159,7 +159,7 @@
+@@ -162,7 +162,7 @@
  # Share files
  SHAREDIR?=	/usr/share
  SHAREOWN?=	root
@@ -175,7 +184,7 @@
  SHAREMODE?=	${NOBINMODE}
  
  CONFDIR?=	/etc
-@@ -195,8 +195,8 @@
+@@ -198,8 +198,8 @@
  HRDLINK?=	-l h
  SYMLINK?=	-l s
  

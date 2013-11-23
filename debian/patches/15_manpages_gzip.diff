@@ -4,7 +4,7 @@
 
 --- a/src/share/mk/bsd.own.mk
 +++ b/src/share/mk/bsd.own.mk
-@@ -203,7 +203,7 @@
+@@ -206,7 +206,7 @@
  STRIP?=		-s
  .endif
  

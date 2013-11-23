@@ -1,8 +1,12 @@
-freebsd-buildutils (10~svn253832-2) UNRELEASED; urgency=low
+freebsd-buildutils (10~svn258496-1) UNRELEASED; urgency=low
 
+  * New upstream snapshot.
+    - Refresh all patches.
+
+  [ Guillem Jover ]
   * Remove myself from Uploaders.
 
- -- Guillem Jover <guillem@debian.org>  Wed, 16 Oct 2013 21:33:29 +0200
+ -- Robert Millan <rmh@debian.org>  Sat, 23 Nov 2013 15:48:42 +0100
 
 freebsd-buildutils (10~svn253832-1) unstable; urgency=low
 

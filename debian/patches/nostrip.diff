@@ -15,7 +15,7 @@ By default, install without -s.  Let dh_strip, etc handle stripping
  .if ${MK_DEBUG_FILES} != "no" && empty(DEBUG_FLAGS:M-g) && \
 --- a/src/share/mk/bsd.own.mk
 +++ b/src/share/mk/bsd.own.mk
-@@ -200,7 +200,7 @@
+@@ -203,7 +203,7 @@
  
  # Common variables
  .if !defined(DEBUG_FLAGS)
