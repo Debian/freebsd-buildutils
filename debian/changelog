@@ -1,8 +1,13 @@
-freebsd-buildutils (10~svn258496-2) UNRELEASED; urgency=low
+freebsd-buildutils (10.0~svn259404-1) UNRELEASED; urgency=low
 
+  * New upstream snapshot (10.0-RC2).
+    - Switch to releng/10.0 branch.
+    - Add kldxref.
+
+  [ Robert Millan ]
   * Fetch source code securely (https) in get-orig-source.
 
- -- Robert Millan <rmh@debian.org>  Sat, 07 Dec 2013 23:22:59 +0100
+ -- Robert Millan <rmh@debian.org>  Tue, 17 Dec 2013 22:28:15 +0100
 
 freebsd-buildutils (10~svn258496-1) unstable; urgency=low
 

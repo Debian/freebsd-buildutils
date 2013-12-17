@@ -37,9 +37,9 @@ major           := $(shell echo $(version) | sed -e 's/\..*//g')
 revision	:= $(shell echo $(full_version) | sed -e 's/^[^+-]*//g')
 
 #SVN		:= https://svn0.us-west.freebsd.org/base/release/$(version).0
-#SVN		:= https://svn0.us-west.freebsd.org/base/releng/$(version)
+SVN		:= https://svn0.us-west.freebsd.org/base/releng/$(version)
 #SVN		:= https://svn0.us-west.freebsd.org/base/stable/$(major)
-SVN		:= https://svn0.us-west.freebsd.org/base/head
+#SVN		:= https://svn0.us-west.freebsd.org/base/head
 
 SOURCE = freebsd-buildutils
 ORIGDIR = $(SOURCE)-$(tar_version)
@@ -77,6 +77,7 @@ get-orig-source:
 		usr.sbin/btxld \
 		usr.sbin/config \
 		usr.sbin/kgzip \
+		usr.sbin/kldxref \
 		usr.sbin/mtree \
 		sys/dev/aic7xxx/aicasm \
 	; do \
@@ -112,6 +113,7 @@ build-stamp: unpack-stamp
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/file2c
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/brandelf
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/sys/dev/aic7xxx/aicasm
+	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/kldxref
 
 	PATH=$(CURDIR)/build-tree/src/usr.bin/file2c:$(PATH) \
 		$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/config
@@ -137,6 +139,9 @@ install: build
 
 	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm install \
 		DESTDIR=$(CURDIR)/debian/$(package)
+
+	$(PMAKE) -C build-tree/src/usr.sbin/kldxref install \
+		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
 
 	# Legacy make is now called "fmake". FIXME: I guess we'll need to point this
 	# symlink to "bmake" at some point?

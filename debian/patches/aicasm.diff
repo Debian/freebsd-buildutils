@@ -11,6 +11,6 @@ Partially sent to freebsd-hackers (2011-07-02)
 +LDADD+=		-ldb -lbsd
 +CFLAGS+=	-D_GNU_SOURCE -isystem /usr/include/freebsd
 +
- CFLAGS+= -I${.CURDIR}
+ CFLAGS+= -I.
  .ifdef MAKESRCPATH
  CFLAGS+= -I${MAKESRCPATH}

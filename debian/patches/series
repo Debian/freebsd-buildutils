@@ -23,3 +23,4 @@ config_ldflags.diff
 
 # Patches that are likely to be Debian-specific
 aicasm.diff
+makefiles.diff
