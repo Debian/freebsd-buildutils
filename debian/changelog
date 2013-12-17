@@ -1,4 +1,4 @@
-freebsd-buildutils (10.0~svn259404-1) UNRELEASED; urgency=low
+freebsd-buildutils (10.0~svn259404-1) unstable; urgency=low
 
   * New upstream snapshot (10.0-RC2).
     - Switch to releng/10.0 branch.
