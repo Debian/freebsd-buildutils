@@ -11,6 +11,7 @@ DEB_BUILD_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 DEB_BUILD_GNU_CPU	:= $(shell dpkg-architecture -qDEB_BUILD_GNU_CPU)
 DEB_HOST_ARCH_CPU	:= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 DEB_HOST_MULTIARCH	:= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+DEB_HOST_ARCH_OS	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 ifeq ($(DEB_HOST_ARCH_CPU), mipsel)
 MACHINE_ARCH		:= mips
@@ -113,7 +114,10 @@ build-stamp: unpack-stamp
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/file2c
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/brandelf
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/sys/dev/aic7xxx/aicasm
+ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
+	# Not portable yet. Maybe someday...
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/kldxref
+endif
 
 	PATH=$(CURDIR)/build-tree/src/usr.bin/file2c:$(PATH) \
 		$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/config
@@ -140,8 +144,10 @@ install: build
 	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm install \
 		DESTDIR=$(CURDIR)/debian/$(package)
 
+ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
 	$(PMAKE) -C build-tree/src/usr.sbin/kldxref install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
+endif
 
 	# Legacy make is now called "fmake". FIXME: I guess we'll need to point this
 	# symlink to "bmake" at some point?

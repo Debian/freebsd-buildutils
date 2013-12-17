@@ -1,3 +1,9 @@
+freebsd-buildutils (10.0~svn259404-2) unstable; urgency=low
+
+  * kldxref is kFreeBSD-only.
+
+ -- Robert Millan <rmh@debian.org>  Tue, 17 Dec 2013 23:34:15 +0100
+
 freebsd-buildutils (10.0~svn259404-1) unstable; urgency=low
 
   * New upstream snapshot (10.0-RC2).
