@@ -142,7 +142,7 @@ install: build
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/share
 
 	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm install \
-		DESTDIR=$(CURDIR)/debian/$(package)
+		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
 
 ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
 	$(PMAKE) -C build-tree/src/usr.sbin/kldxref install \
