@@ -46,6 +46,13 @@ SOURCE = freebsd-buildutils
 ORIGDIR = $(SOURCE)-$(tar_version)
 TARNAME = $(SOURCE)_$(tar_version).orig.tar.gz
 
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+
+	# Do not mess with MAKEFLAGS until we transfer control to BSD make (see below)
+	BSD_MAKEFLAGS += -j$(NUMJOBS)
+endif
+
 export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
          -DMACHINE_ARCH='"$(MACHINE_ARCH)"' \
          -DMACHINE_MULTIARCH='"$(MACHINE_MULTIARCH)"' \
@@ -56,8 +63,12 @@ export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
 MAKE_BUILD_FLAGS = CC=gcc NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO NO_SHARED=NO
 
 PMAKE_FLAGS = -m $(CURDIR)/src/share/mk
-PMAKE_BOOTSTRAP = $(CURDIR)/build-tree/src/usr.bin/make/pmake $(PMAKE_FLAGS)
-PMAKE = $(CURDIR)/build-tree/src/usr.bin/make/fmake $(PMAKE_FLAGS)
+PMAKE_BOOTSTRAP = \
+	MAKEFLAGS=$(BSD_MAKEFLAGS) \
+	$(CURDIR)/build-tree/src/usr.bin/make/pmake $(PMAKE_FLAGS)
+PMAKE = \
+	MAKEFLAGS=$(BSD_MAKEFLAGS) \
+	$(CURDIR)/build-tree/src/usr.bin/make/fmake $(PMAKE_FLAGS)
 YACC = byacc
 
 package = $(SOURCE)
