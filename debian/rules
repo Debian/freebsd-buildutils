@@ -141,11 +141,11 @@ install: build
 	dh_prep
 	dh_installdirs
 
-	for i in cksum lex make mkdep file2c brandelf ; do \
+	for i in cksum lex mkdep file2c brandelf ; do \
 	  $(PMAKE) -C $(CURDIR)/build-tree/src/usr.bin/$$i install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
-	for i in mtree config ; do \
+	for i in config ; do \
 	  $(PMAKE) -C $(CURDIR)/build-tree/src/usr.sbin/$$i install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
@@ -160,9 +160,11 @@ ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
 endif
 
-	# Legacy make is now called "fmake". FIXME: I guess we'll need to point this
-	# symlink to "bmake" at some point?
-	ln -s fmake $(CURDIR)/debian/$(package)/usr/lib/freebsd/make
+	# Legacy make (aka fmake / fmtree)
+	$(PMAKE) -C $(CURDIR)/build-tree/src/usr.bin/make install \
+		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
+	$(PMAKE) -C $(CURDIR)/build-tree/src/usr.sbin/mtree install \
+		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
 
 	# remove trash
 	rm -rf 	$(CURDIR)/debian/$(package)/usr/include \
@@ -170,14 +172,15 @@ endif
 	for i in `find $(CURDIR)/debian/$(package)/usr/share/man -type l` ; do \
 		rm $$i ; \
 	done
+	rm -f $(CURDIR)/debian/$(package)/usr/share/man/man5/mtree.5.gz
 
 	# relocate files
-	for m in `find $(CURDIR)/debian/$(package)/usr/share/man -type f`; do \
-		mv $$m `echo $$m | sed -e 's:\(man[0-9]/\):\1freebsd-:'` ; \
-	done
 	for i in `cd $(CURDIR)/debian/$(package)/usr/lib/freebsd && ls` ; do \
 		ln -s ../lib/freebsd/$$i \
-		$(CURDIR)/debian/$(package)/usr/bin/freebsd-$$i ; \
+			$(CURDIR)/debian/$(package)/usr/bin/freebsd-$$i ; \
+		for m in $(CURDIR)/debian/$(package)/usr/share/man/man[0-9]/$$i.* ; do \
+			mv $$m `echo $$m | sed -e 's:\(man[0-9]/\):\1freebsd-:'` ; \
+		done ; \
 	done
 	rmdir $(CURDIR)/debian/$(package)/usr/sbin
 

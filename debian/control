@@ -17,7 +17,7 @@ Standards-Version: 3.9.2
 Package: freebsd-buildutils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, bsdmainutils, unzip, patchutils,
- freebsd-glue,
+ freebsd-glue (>= 0.2.8~),
 # Required by lex
  m4,
 Conflicts: freebsd5-buildutils, freebsd6-buildutils, pmake
