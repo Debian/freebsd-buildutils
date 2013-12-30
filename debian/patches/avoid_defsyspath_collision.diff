@@ -1,0 +1,56 @@
+
+This allows freebsd-buildutils to be installed alongside bmake.
+
+--- a/src/share/mk/Makefile
++++ b/src/share/mk/Makefile
+@@ -41,7 +41,7 @@
+ 	version_gen.awk
+ 
+ NO_OBJ=
+-FILESDIR=	${BINDIR}/mk
++FILESDIR=	${BINDIR}/mk-freebsd
+ 
+ .if ${MK_ATF} != "no"
+ FILES+=	atf.test.mk
+--- a/src/share/mk/bsd.symver.mk
++++ b/src/share/mk/bsd.symver.mk
+@@ -23,7 +23,7 @@
+ .endif
+ _oarg=  ${_arg}
+ .endfor
+-_mpath+= /usr/share/mk
++_mpath+= /usr/share/mk-freebsd
+ 
+ # Look up ${VERSION_GEN} in ${_mpath}.
+ _vgen=
+--- a/src/usr.bin/make/make.1
++++ b/src/usr.bin/make/make.1
+@@ -235,7 +235,7 @@
+ .Fl m
+ options can be specified to form a search path.
+ This path will override the default system include path,
+-.Pa /usr/share/mk .
++.Pa /usr/share/mk-freebsd .
+ The system include path will always be appended to the search path used
+ for "..."-style inclusions and makefile searches (see the
+ .Fl I
+@@ -1721,7 +1721,7 @@
+ object directory
+ .It Pa sys.mk
+ system makefile
+-.It Pa /usr/share/mk
++.It Pa /usr/share/mk-freebsd
+ default system makefile directory
+ .It Pa /usr/share/doc/psd/12.make
+ PMake tutorial
+--- a/src/usr.bin/make/pathnames.h
++++ b/src/usr.bin/make/pathnames.h
+@@ -50,7 +50,7 @@
+ #endif /* ! PATH_DEFSYSMK */
+ 
+ #ifndef PATH_DEFSYSPATH
+-#define	PATH_DEFSYSPATH	"/usr/share/mk"
++#define	PATH_DEFSYSPATH	"/usr/share/mk-freebsd"
+ #endif /* ! PATH_DEFSYSPATH */
+ 
+ #endif /* pathnames_h_235b888a */

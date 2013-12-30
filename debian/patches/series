@@ -22,5 +22,6 @@ nostrip.diff
 config_ldflags.diff
 
 # Patches that are likely to be Debian-specific
+avoid_defsyspath_collision.diff
 aicasm.diff
 makefiles.diff

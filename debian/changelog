@@ -4,6 +4,8 @@ freebsd-buildutils (10.0~svn259404-4) UNRELEASED; urgency=low
   * Install make and mtree by their upstream names (fmake and fmtree).
     Remove the legacy symlinks (leave them to freebsd-glue).
   * Install file2c and brandelf directly to /usr/bin.
+  * Move /usr/share/mk to /usr/share/mk-freebsd. This allows
+    freebsd-buildutils to be installed alongside bmake.
 
  -- Robert Millan <rmh@debian.org>  Sun, 29 Dec 2013 20:38:18 +0100
 

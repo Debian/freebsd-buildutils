@@ -6,5 +6,5 @@ usr/share/man/man5
 usr/share/man/man8
 usr/lib
 var/db
-usr/share/mk
+usr/share/mk-freebsd
 usr/lib/freebsd
