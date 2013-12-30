@@ -3,6 +3,7 @@ freebsd-buildutils (10.0~svn259404-4) UNRELEASED; urgency=low
   * Correctly setup BSD version of MAKEFLAGS to support parallel builds.
   * Install make and mtree by their upstream names (fmake and fmtree).
     Remove the legacy symlinks (leave them to freebsd-glue).
+  * Install file2c and brandelf directly to /usr/bin.
 
  -- Robert Millan <rmh@debian.org>  Sun, 29 Dec 2013 20:38:18 +0100
 

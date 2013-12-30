@@ -141,7 +141,10 @@ install: build
 	dh_prep
 	dh_installdirs
 
-	for i in cksum lex mkdep file2c brandelf ; do \
+	$(PMAKE) -C build-tree/src/usr.bin/file2c install DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
+	$(PMAKE) -C build-tree/src/usr.bin/brandelf install DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
+
+	for i in cksum lex mkdep ; do \
 	  $(PMAKE) -C $(CURDIR)/build-tree/src/usr.bin/$$i install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
