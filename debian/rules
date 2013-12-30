@@ -63,12 +63,9 @@ export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
 MAKE_BUILD_FLAGS = CC=gcc NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO NO_SHARED=NO
 
 PMAKE_FLAGS = -m $(CURDIR)/src/share/mk
-PMAKE_BOOTSTRAP = \
-	MAKEFLAGS=$(BSD_MAKEFLAGS) \
-	$(CURDIR)/build-tree/src/usr.bin/make/pmake $(PMAKE_FLAGS)
 PMAKE = \
 	MAKEFLAGS=$(BSD_MAKEFLAGS) \
-	$(CURDIR)/build-tree/src/usr.bin/make/fmake $(PMAKE_FLAGS)
+	bmake $(PMAKE_FLAGS)
 YACC = byacc
 
 package = $(SOURCE)
@@ -109,10 +106,7 @@ build: build-stamp
 build-stamp: unpack-stamp
 	dh_testdir
 
-	# Bootstrap pmake using GNU make
-	$(MAKE) -C build-tree/src/usr.bin/make -f Makefile.dist
-	$(MAKE) -C build-tree/src/usr.bin/make -f Makefile.dist mostlyclean
-	$(PMAKE_BOOTSTRAP) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/make
+	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/make
 
 	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/cksum
 

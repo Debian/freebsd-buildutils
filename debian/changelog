@@ -6,6 +6,8 @@ freebsd-buildutils (10.0~svn259404-4) UNRELEASED; urgency=low
   * Install file2c and brandelf directly to /usr/bin.
   * Move /usr/share/mk to /usr/share/mk-freebsd. This allows
     freebsd-buildutils to be installed alongside bmake.
+  * Remove bootstrap magic. bmake is the default in upstream now: just
+    use it to build fmake.
 
  -- Robert Millan <rmh@debian.org>  Sun, 29 Dec 2013 20:38:18 +0100
 

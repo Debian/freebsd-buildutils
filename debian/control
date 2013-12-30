@@ -5,8 +5,8 @@ Maintainer: GNU/kFreeBSD Maintainers <debian-bsd@lists.debian.org>
 Uploaders: Aurelien Jarno <aurel32@debian.org>, Robert Millan <rmh@debian.org>
 Build-Depends: debhelper (>= 7), flex | flex-old, bison,
  libbsd-dev (>= 0.3.0),
- pkg-config,
  freebsd-glue (>= 0.0.9),
+ bmake,
  byacc (>= 20120115~),
 # for freebsd-config
  libsbuf-dev,
