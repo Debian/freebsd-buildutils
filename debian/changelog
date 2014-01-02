@@ -1,4 +1,4 @@
-freebsd-buildutils (10.0~svn259404-4) UNRELEASED; urgency=low
+freebsd-buildutils (10.0~svn259404-4) unstable; urgency=low
 
   * Correctly setup BSD version of MAKEFLAGS to support parallel builds.
   * Install make and mtree by their upstream names (fmake and fmtree).
@@ -9,7 +9,7 @@ freebsd-buildutils (10.0~svn259404-4) UNRELEASED; urgency=low
   * Remove bootstrap magic. bmake is the default in upstream now: just
     use it to build fmake.
 
- -- Robert Millan <rmh@debian.org>  Sun, 29 Dec 2013 20:38:18 +0100
+ -- Robert Millan <rmh@debian.org>  Thu, 02 Jan 2014 17:43:51 +0100
 
 freebsd-buildutils (10.0~svn259404-3) unstable; urgency=low
 
