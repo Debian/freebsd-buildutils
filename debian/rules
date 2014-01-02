@@ -147,7 +147,7 @@ install: build
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
 	$(PMAKE) -C build-tree/src/share/mk install \
-		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/share
+		DESTDIR=$(CURDIR)/debian/freebsd-mk BINDIR=/usr/share
 
 	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin

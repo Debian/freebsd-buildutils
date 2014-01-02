@@ -20,6 +20,9 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, bsdmainutils, unzip, patchutils,
  freebsd-glue (>= 0.2.8~),
 # Required by lex
  m4,
+# Not strictly required anymore. But let's drag it in for now, to avoid breaking
+# expectations.
+ freebsd-mk,
 Conflicts: freebsd5-buildutils, freebsd6-buildutils
 Provides: freebsd6-buildutils, freebsd7-buildutils
 Description: Utilities for building FreeBSD sources
@@ -28,3 +31,17 @@ Description: Utilities for building FreeBSD sources
  .
  They have some specific modifications needed to be able to build FreeBSD
  sources.
+
+Package: freebsd-mk
+Architecture: all
+Replaces: freebsd-buildutils (<< 10.0~svn259404-5~)
+Enhances: bmake
+Description: FreeBSD makefile templates for bmake
+ This package contains the makefile templates from the FreeBSD project. They
+ provide simple rules to build programs, libraries, etc.
+ .
+ These templates provide an alternative to the default makefile templates
+ shipped with bmake. If you want to enable them in your programs, simply
+ invoke bmake as follows:
+ .
+ bmake -m /usr/share/mk-freebsd

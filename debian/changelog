@@ -1,3 +1,10 @@
+freebsd-buildutils (10.0~svn259404-5) experimental; urgency=low
+
+  * Break circular build-dependency with freebsd-glue by splitting
+    freebsd-mk into a package of its own.
+
+ -- Robert Millan <rmh@debian.org>  Thu, 02 Jan 2014 23:17:49 +0100
+
 freebsd-buildutils (10.0~svn259404-4) unstable; urgency=low
 
   * Correctly setup BSD version of MAKEFLAGS to support parallel builds.
