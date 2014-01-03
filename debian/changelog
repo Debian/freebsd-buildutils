@@ -1,3 +1,9 @@
+freebsd-buildutils (10.0~svn259404-6) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Robert Millan <rmh@debian.org>  Fri, 03 Jan 2014 17:12:31 +0100
+
 freebsd-buildutils (10.0~svn259404-5) experimental; urgency=low
 
   * Break circular build-dependency with freebsd-glue by splitting
