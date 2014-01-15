@@ -175,6 +175,19 @@
  BINMODE?=	555
  NOBINMODE?=	444
  
+@@ -147,9 +147,9 @@
+ LIBDIR?=	/usr/lib
+ LIBCOMPATDIR?=	/usr/lib/compat
+ LIBPRIVATEDIR?=	/usr/lib/private
+-LIBDATADIR?=	/usr/libdata
+-LIBEXECDIR?=	/usr/libexec
+-LINTLIBDIR?=	/usr/libdata/lint
++LIBDATADIR?=	/usr/share
++LIBEXECDIR?=	${LIBDIR}
++LINTLIBDIR?=	${LIBDATADIR}/lint
+ SHLIBDIR?=	${LIBDIR}
+ LIBOWN?=	${BINOWN}
+ LIBGRP?=	${BINGRP}
 @@ -162,7 +162,7 @@
  # Share files
  SHAREDIR?=	/usr/share

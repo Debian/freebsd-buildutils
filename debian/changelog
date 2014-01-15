@@ -1,3 +1,9 @@
+freebsd-buildutils (10.0-2) unstable; urgency=low
+
+  * Adjust LIBDATADIR, LIBEXECDIR and LINTLIBDIR for FHS conformance.
+
+ -- Robert Millan <rmh@debian.org>  Wed, 15 Jan 2014 17:26:00 +0100
+
 freebsd-buildutils (10.0-1) unstable; urgency=low
 
   * New upstream release.
