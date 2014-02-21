@@ -1,3 +1,10 @@
+freebsd-buildutils (10.0-3) unstable; urgency=low
+
+  * kldxref_abort_on_error.diff: Treat EFAULT condition as fatal (see
+    comment in patch header).
+
+ -- Robert Millan <rmh@debian.org>  Fri, 21 Feb 2014 20:31:13 +0100
+
 freebsd-buildutils (10.0-2) unstable; urgency=low
 
   * Adjust LIBDATADIR, LIBEXECDIR and LINTLIBDIR for FHS conformance.

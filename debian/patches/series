@@ -3,6 +3,7 @@
 # Patches that are in good shape for merging upstream
 mk_ncp.diff
 yacc_is_byacc.diff
+kldxref_abort_on_error.diff
 
 # Other patches that might or might not be mergeable
 00_upstream.diff
@@ -25,3 +26,4 @@ config_ldflags.diff
 avoid_defsyspath_collision.diff
 aicasm.diff
 makefiles.diff
+#test

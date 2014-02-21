@@ -1,0 +1,25 @@
+
+With kldxref from 10.0-2, this warnc() reports EFAULT, rendering the
+output useless. However this is no longer reproducible after rebuilding
+10.0-2 with recent unstable. Let's treat this warnc() as fatal so that
+at least we know if/when trouble comes back.
+
+It's probably related to offset types (Elf_Off / off_t). Unfortunately
+I haven't been able to diagnose it:
+
+$ kldxref -dv /tmp/t/
+/tmp/t/drm2.ko
+kldxref: ef_seg_read_rel(/tmp/t/drm2.ko): bad offset/len (4800000130808b48:33)
+kldxref: error while reading /tmp/t/drm2.ko: Bad address
+
+--- a/src/usr.sbin/kldxref/kldxref.c
++++ b/src/usr.sbin/kldxref/kldxref.c
+@@ -230,7 +230,7 @@
+ 			parse_entry(&md, cval, &ef, kldname);
+ 		}
+ 		if (error)
+-			warnc(error, "error while reading %s", filename);
++			errc(error, "error while reading %s", filename);
+ 		free(orgp);
+ 	} while(0);
+ 	EF_CLOSE(&ef);
