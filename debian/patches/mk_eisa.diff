@@ -1,0 +1,10 @@
+--- a/src/share/mk/bsd.own.mk
++++ b/src/share/mk/bsd.own.mk
+@@ -365,6 +365,7 @@
+ __DEFAULT_NO_OPTIONS = \
+     BSD_GREP \
+     CLANG_EXTRAS \
++    EISA \
+     CTF \
+     DEBUG_FILES \
+     GPL_DTC \

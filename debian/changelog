@@ -1,3 +1,9 @@
+freebsd-buildutils (10.0-4) unstable; urgency=low
+
+  * Add MK_EISA.
+
+ -- Robert Millan <rmh@debian.org>  Sun, 04 May 2014 14:15:29 +0200
+
 freebsd-buildutils (10.0-3) unstable; urgency=low
 
   * kldxref_abort_on_error.diff: Treat EFAULT condition as fatal (see
