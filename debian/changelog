@@ -1,4 +1,4 @@
-freebsd-buildutils (10.0-4.5) unstable; urgency=low
+freebsd-buildutils (10.0-5) UNRELEASED; urgency=low
 
   [ Petr Salinger ] 
   * Backport mk_hyperv, needed by 10.1 RC
