@@ -2,6 +2,7 @@
 mk_ncp.diff
 mk_eisa.diff
 mk_hyperv.diff
+mk_tests.diff
 
 # Patches that are in good shape for merging upstream
 yacc_is_byacc.diff
@@ -30,4 +31,3 @@ aicasm.diff
 makefiles.diff
 #test
 hppa.diff
-mk_tests.diff
