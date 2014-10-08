@@ -1,0 +1,22 @@
+From: Helge Deller <deller@gmx.de>
+Subject: Do not use -fstack-protector on hppa/parisc arch.
+Bug-Debian: https://bugs.debian.org/758377
+Forwarded: not-needed
+
+--- a/src/share/mk/bsd.sys.mk
++++ b/src/share/mk/bsd.sys.mk
+@@ -123,11 +123,12 @@
+ .endif # CLANG
+ 
+ .if ${MK_SSP} != "no" && ${MACHINE_CPUARCH} != "ia64" && \
+-    ${MACHINE_CPUARCH} != "arm" && ${MACHINE_CPUARCH} != "mips"
++    ${MACHINE_CPUARCH} != "arm" && ${MACHINE_CPUARCH} != "mips" && \
++    ${MACHINE_CPUARCH} != "hppa"
+ # Don't use -Wstack-protector as it breaks world with -Werror.
+ SSP_CFLAGS?=	-fstack-protector
+ CFLAGS+=	${SSP_CFLAGS}
+-.endif # SSP && !IA64 && !ARM && !MIPS
++.endif # SSP && !IA64 && !ARM && !MIPS && !HPPA
+ 
+ # Allow user-specified additional warning flags
+ CFLAGS+=	${CWARNFLAGS}
