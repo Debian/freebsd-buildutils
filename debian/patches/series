@@ -30,3 +30,4 @@ aicasm.diff
 makefiles.diff
 #test
 hppa.diff
+mk_tests.diff

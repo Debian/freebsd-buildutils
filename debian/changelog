@@ -4,6 +4,7 @@ freebsd-buildutils (10.0-5) UNRELEASED; urgency=low
   * Backport mk_hyperv, needed by 10.1 RC
 
   [ Steven Chamberlain ]
+  * backports MK_TESTS for freebsd-utils (>> 10.1~)
   * Do not use -fstack-protector on hppa/parisc arch (thanks, Helge
     Deller) (Closes: #758377)
   * In get-orig-source, svn export with --ignore-keywords so that
