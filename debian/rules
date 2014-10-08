@@ -90,7 +90,7 @@ get-orig-source:
 		usr.sbin/mtree \
 		sys/dev/aic7xxx/aicasm \
 	; do \
-		svn export -r $(svn_revision) $(SVN)/$$i $(ORIGDIR)/src/$$i ; \
+		svn export --ignore-keywords -r $(svn_revision) $(SVN)/$$i $(ORIGDIR)/src/$$i ; \
 	done
 	tar --numeric-owner --owner 0 --group 0 -czf ../$(TARNAME) $(ORIGDIR)
 	rm -rf $(ORIGDIR)
