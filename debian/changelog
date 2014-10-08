@@ -6,6 +6,7 @@ freebsd-buildutils (10.0-5) UNRELEASED; urgency=low
   [ Steven Chamberlain ]
   * In get-orig-source, svn export with --ignore-keywords so that
     revision tags do not fuzzy the patches
+  * Add myself to Uploaders
 
  -- Petr Salinger <Petr.Salinger@seznam.cz>  Sat, 04 Oct 2014 18:16:23 +0200
 

@@ -2,7 +2,10 @@ Source: freebsd-buildutils
 Section: devel
 Priority: extra
 Maintainer: GNU/kFreeBSD Maintainers <debian-bsd@lists.debian.org>
-Uploaders: Aurelien Jarno <aurel32@debian.org>, Robert Millan <rmh@debian.org>
+Uploaders:
+ Aurelien Jarno <aurel32@debian.org>,
+ Robert Millan <rmh@debian.org>,
+ Steven Chamberlain <steven@pyro.eu.org>
 Build-Depends: debhelper (>= 7), flex | flex-old, bison,
  libbsd-dev (>= 0.3.0),
  freebsd-glue (>= 0.0.9),
