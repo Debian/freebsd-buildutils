@@ -8,7 +8,7 @@ Uploaders:
  Steven Chamberlain <steven@pyro.eu.org>
 Build-Depends: debhelper (>= 7), flex | flex-old, bison,
  libbsd-dev (>= 0.3.0),
- freebsd-glue (>= 0.0.9),
+ freebsd-glue (>= 0.2.20),
  bmake,
  byacc (>= 20120115~),
 # for freebsd-config
