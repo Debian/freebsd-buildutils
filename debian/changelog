@@ -2,6 +2,7 @@ freebsd-buildutils (10.0-6) UNRELEASED; urgency=medium
 
   * Raise Build-Depends on freebsd-glue to >= 0.2.20~, to not be
     affected by #759249 if the installed libbsd-dev is newer
+  * Do not use -fstack-protector on alpha
 
  -- Steven Chamberlain <steven@pyro.eu.org>  Tue, 21 Oct 2014 22:50:38 +0100
 

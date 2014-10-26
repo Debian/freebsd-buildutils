@@ -11,12 +11,12 @@ Forwarded: not-needed
  .if ${MK_SSP} != "no" && ${MACHINE_CPUARCH} != "ia64" && \
 -    ${MACHINE_CPUARCH} != "arm" && ${MACHINE_CPUARCH} != "mips"
 +    ${MACHINE_CPUARCH} != "arm" && ${MACHINE_CPUARCH} != "mips" && \
-+    ${MACHINE_CPUARCH} != "hppa"
++    ${MACHINE_CPUARCH} != "hppa" && ${MACHINE_CPUARCH} != "alpha"
  # Don't use -Wstack-protector as it breaks world with -Werror.
  SSP_CFLAGS?=	-fstack-protector
  CFLAGS+=	${SSP_CFLAGS}
 -.endif # SSP && !IA64 && !ARM && !MIPS
-+.endif # SSP && !IA64 && !ARM && !MIPS && !HPPA
++.endif # SSP && !IA64 && !ARM && !MIPS && !HPPA && !ALPHA
  
  # Allow user-specified additional warning flags
  CFLAGS+=	${CWARNFLAGS}
