@@ -1,3 +1,10 @@
+freebsd-buildutils (10.0-7) UNRELEASED; urgency=medium
+
+  * Cherry-pick r276494 from HEAD:
+    Don't include bsd.sys.mk within bsd.kmod.mk
+
+ -- Steven Chamberlain <steven@pyro.eu.org>  Wed, 08 Jul 2015 16:44:07 +0100
+
 freebsd-buildutils (10.0-6) experimental; urgency=medium
 
   * Raise Build-Depends on freebsd-glue to >= 0.2.20~, to not be
