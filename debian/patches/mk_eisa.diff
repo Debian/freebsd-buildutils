@@ -1,10 +1,12 @@
---- a/src/share/mk/bsd.own.mk
-+++ b/src/share/mk/bsd.own.mk
-@@ -365,6 +365,7 @@
+Index: freebsd-buildutils/src/share/mk/bsd.own.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.own.mk
++++ freebsd-buildutils/src/share/mk/bsd.own.mk
+@@ -390,6 +390,7 @@ __DEFAULT_YES_OPTIONS = \
  __DEFAULT_NO_OPTIONS = \
      BSD_GREP \
      CLANG_EXTRAS \
 +    EISA \
      CTF \
      DEBUG_FILES \
-     GPL_DTC \
+     HESIOD \

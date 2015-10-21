@@ -1,8 +1,5 @@
 # Patches from (or merged in) upstream
-mk_ncp.diff
 mk_eisa.diff
-mk_hyperv.diff
-mk_tests.diff
 r276494.diff
 
 # Patches that are in good shape for merging upstream

@@ -1,5 +1,7 @@
---- a/src/share/mk/bsd.kmod.mk
-+++ b/src/share/mk/bsd.kmod.mk
+Index: freebsd-buildutils/src/share/mk/bsd.kmod.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.kmod.mk
++++ freebsd-buildutils/src/share/mk/bsd.kmod.mk
 @@ -1,15 +1,17 @@
  # $FreeBSD$
  

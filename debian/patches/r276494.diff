@@ -4,9 +4,11 @@ Don't include bsd.sys.mk within bsd.kmod.mk, else CFLAGS will be given
 twice on the command line.  That would override CWARNFLAGS, and causes
 some modules to fail to build under Clang.
 
---- a/src/share/mk/bsd.kmod.mk
-+++ b/src/share/mk/bsd.kmod.mk
-@@ -15,5 +15,3 @@
+Index: freebsd-buildutils/src/share/mk/bsd.kmod.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.kmod.mk
++++ freebsd-buildutils/src/share/mk/bsd.kmod.mk
+@@ -13,5 +13,3 @@ SYSDIR=	${_dir}
  .endif
  
  .include "${SYSDIR}/conf/kmod.mk"

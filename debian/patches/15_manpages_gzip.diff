@@ -2,9 +2,11 @@
  src/share/mk/bsd.own.mk |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/src/share/mk/bsd.own.mk
-+++ b/src/share/mk/bsd.own.mk
-@@ -206,7 +206,7 @@
+Index: freebsd-buildutils/src/share/mk/bsd.own.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.own.mk
++++ freebsd-buildutils/src/share/mk/bsd.own.mk
+@@ -210,7 +210,7 @@ INSTALL_SYMLINK?=	ln -s
  STRIP?=		-s
  .endif
  

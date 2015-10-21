@@ -1,5 +1,7 @@
---- a/src/usr.bin/make/Makefile
-+++ b/src/usr.bin/make/Makefile
+Index: freebsd-buildutils/src/usr.bin/make/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/usr.bin/make/Makefile
++++ freebsd-buildutils/src/usr.bin/make/Makefile
 @@ -6,6 +6,7 @@
  
  PROG=	make
@@ -8,9 +10,11 @@
  SRCS=	arch.c buf.c cond.c dir.c for.c hash.c hash_tables.c job.c	\
  	lst.c main.c make.c parse.c proc.c shell.c str.c suff.c targ.c	\
  	util.c var.c
---- a/src/usr.sbin/mtree/Makefile
-+++ b/src/usr.sbin/mtree/Makefile
-@@ -9,6 +9,7 @@
+Index: freebsd-buildutils/src/usr.sbin/mtree/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/usr.sbin/mtree/Makefile
++++ freebsd-buildutils/src/usr.sbin/mtree/Makefile
+@@ -9,6 +9,7 @@ PROG=	fmtree
  MAN=	fmtree.8 mtree.5
  SRCS=	compare.c crc.c create.c excludes.c misc.c mtree.c spec.c verify.c
  SRCS+=	specspec.c
@@ -18,8 +22,10 @@
  
  
  .if ${MK_NMTREE} == "no"
---- a/src/usr.bin/brandelf/Makefile
-+++ b/src/usr.bin/brandelf/Makefile
+Index: freebsd-buildutils/src/usr.bin/brandelf/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/usr.bin/brandelf/Makefile
++++ freebsd-buildutils/src/usr.bin/brandelf/Makefile
 @@ -1,5 +1,6 @@
  # $FreeBSD$
  
@@ -27,8 +33,10 @@
 +LDADD=	-lbsd
  
  .include <bsd.prog.mk>
---- a/src/usr.bin/cksum/Makefile
-+++ b/src/usr.bin/cksum/Makefile
+Index: freebsd-buildutils/src/usr.bin/cksum/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/usr.bin/cksum/Makefile
++++ freebsd-buildutils/src/usr.bin/cksum/Makefile
 @@ -3,6 +3,7 @@
  
  PROG=	cksum
@@ -37,11 +45,15 @@
  SIMLINKS=	${BINDIR}/cksum ${BINDIR}/sum
  MLINKS=	cksum.1 sum.1
  
---- a/src/usr.bin/file2c/Makefile
-+++ b/src/usr.bin/file2c/Makefile
-@@ -1,4 +1,5 @@
- # $FreeBSD$
+Index: freebsd-buildutils/src/usr.bin/file2c/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/usr.bin/file2c/Makefile
++++ freebsd-buildutils/src/usr.bin/file2c/Makefile
+@@ -3,6 +3,7 @@
+ .include <bsd.own.mk>
  
  PROG=	file2c
 +LDADD+=	-lbsd
- .include <bsd.prog.mk>
+ 
+ .if ${MK_TESTS} != "no"
+ SUBDIR+= tests

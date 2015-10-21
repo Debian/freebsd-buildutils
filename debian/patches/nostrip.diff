@@ -2,9 +2,11 @@
 By default, install without -s.  Let dh_strip, etc handle stripping
 (and honor DEB_BUILD_OPTIONS=nostrip, etc).
 
---- a/src/share/mk/bsd.lib.mk
-+++ b/src/share/mk/bsd.lib.mk
-@@ -40,7 +40,7 @@
+Index: freebsd-buildutils/src/share/mk/bsd.lib.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.lib.mk
++++ freebsd-buildutils/src/share/mk/bsd.lib.mk
+@@ -47,7 +47,7 @@ CFLAGS+= ${DEBUG_FLAGS}
  CTFFLAGS+= -g
  .endif
  .else
@@ -13,9 +15,11 @@ By default, install without -s.  Let dh_strip, etc handle stripping
  .endif
  
  .if ${MK_DEBUG_FILES} != "no" && empty(DEBUG_FLAGS:M-g) && \
---- a/src/share/mk/bsd.own.mk
-+++ b/src/share/mk/bsd.own.mk
-@@ -203,7 +203,7 @@
+Index: freebsd-buildutils/src/share/mk/bsd.own.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.own.mk
++++ freebsd-buildutils/src/share/mk/bsd.own.mk
+@@ -207,7 +207,7 @@ INSTALL_SYMLINK?=	ln -s
  
  # Common variables
  .if !defined(DEBUG_FLAGS)
@@ -24,9 +28,11 @@ By default, install without -s.  Let dh_strip, etc handle stripping
  .endif
  
  COMPRESS_CMD?=	gzip -cn -9
---- a/src/share/mk/bsd.prog.mk
-+++ b/src/share/mk/bsd.prog.mk
-@@ -45,7 +45,7 @@
+Index: freebsd-buildutils/src/share/mk/bsd.prog.mk
+===================================================================
+--- freebsd-buildutils.orig/src/share/mk/bsd.prog.mk
++++ freebsd-buildutils/src/share/mk/bsd.prog.mk
+@@ -43,7 +43,7 @@ CTFFLAGS+= -g
  .endif
  
  .if !defined(DEBUG_FLAGS)

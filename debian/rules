@@ -44,7 +44,7 @@ SVN		:= https://svn0.us-west.freebsd.org/base/release/$(version).0
 
 SOURCE = freebsd-buildutils
 ORIGDIR = $(SOURCE)-$(tar_version)
-TARNAME = $(SOURCE)_$(tar_version).orig.tar.gz
+TARNAME = $(SOURCE)_$(tar_version).orig.tar.xz
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
@@ -92,7 +92,7 @@ get-orig-source:
 	; do \
 		svn export --ignore-keywords -r $(svn_revision) $(SVN)/$$i $(ORIGDIR)/src/$$i ; \
 	done
-	tar --numeric-owner --owner 0 --group 0 -czf ../$(TARNAME) $(ORIGDIR)
+	tar --numeric-owner --owner 0 --group 0 -cJf ../$(TARNAME) $(ORIGDIR)
 	rm -rf $(ORIGDIR)
 
 unpack: unpack-stamp

@@ -1,3 +1,13 @@
+freebsd-buildutils (10.2-1) UNRELEASED; urgency=medium
+
+  * Update to 10.2 source
+  * refresh patches
+    * drop mk_ncp.diff -- was a workaround for kfreebsd-9
+	* drop mk_hyperv.diff and mk_tests.diff now upstream
+  * Compress orig-source with xz
+
+ -- Christoph Egger <christoph@debian.org>  Wed, 21 Oct 2015 12:10:45 +0200
+
 freebsd-buildutils (10.0-7) unstable; urgency=medium
 
   * Cherry-pick r276494 from HEAD:

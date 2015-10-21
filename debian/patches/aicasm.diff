@@ -1,9 +1,11 @@
 
 Partially sent to freebsd-hackers (2011-07-02)
 
---- a/src/sys/dev/aic7xxx/aicasm/Makefile
-+++ b/src/sys/dev/aic7xxx/aicasm/Makefile
-@@ -24,6 +24,10 @@
+Index: freebsd-buildutils/src/sys/dev/aic7xxx/aicasm/Makefile
+===================================================================
+--- freebsd-buildutils.orig/src/sys/dev/aic7xxx/aicasm/Makefile
++++ freebsd-buildutils/src/sys/dev/aic7xxx/aicasm/Makefile
+@@ -24,6 +24,10 @@ WARNS?=	0
  DEPENDFILE=	.depend_aicasm
  .endif
  
@@ -11,6 +13,6 @@ Partially sent to freebsd-hackers (2011-07-02)
 +LDADD+=		-ldb -lbsd
 +CFLAGS+=	-D_GNU_SOURCE -isystem /usr/include/freebsd
 +
- CFLAGS+= -I.
+ CFLAGS+= -I${.CURDIR}
  .ifdef MAKESRCPATH
  CFLAGS+= -I${MAKESRCPATH}
