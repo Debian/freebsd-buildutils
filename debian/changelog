@@ -1,6 +1,7 @@
 freebsd-buildutils (10.3~svn295289-1) UNRELEASED; urgency=medium
 
   * New upstream snapshot of 10.3-BETA1
+  * Make get-orig-source tarball reproducible
 
  -- Steven Chamberlain <steven@pyro.eu.org>  Sat, 06 Feb 2016 22:50:09 +0000
 
