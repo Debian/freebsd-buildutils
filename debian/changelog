@@ -1,4 +1,4 @@
-freebsd-buildutils (10.3~svn295289-1) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn295289-1) experimental; urgency=medium
 
   * New upstream snapshot of 10.3-BETA1
   * Make get-orig-source tarball reproducible
