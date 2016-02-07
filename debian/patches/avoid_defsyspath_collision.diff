@@ -1,11 +1,9 @@
 
 This allows freebsd-buildutils to be installed alongside bmake.
 
-Index: freebsd-buildutils/src/share/mk/Makefile
-===================================================================
---- freebsd-buildutils.orig/src/share/mk/Makefile
-+++ freebsd-buildutils/src/share/mk/Makefile
-@@ -41,7 +41,7 @@ FILES=	\
+--- a/src/share/mk/Makefile
++++ b/src/share/mk/Makefile
+@@ -47,7 +47,7 @@
  	version_gen.awk
  
  NO_OBJ=
@@ -14,11 +12,9 @@ Index: freebsd-buildutils/src/share/mk/Makefile
  
  .if ${MK_TESTS} != "no"
  FILES+=	atf.test.mk
-Index: freebsd-buildutils/src/share/mk/bsd.symver.mk
-===================================================================
---- freebsd-buildutils.orig/src/share/mk/bsd.symver.mk
-+++ freebsd-buildutils/src/share/mk/bsd.symver.mk
-@@ -23,7 +23,7 @@ _mpath+= ${_arg}
+--- a/src/share/mk/bsd.symver.mk
++++ b/src/share/mk/bsd.symver.mk
+@@ -23,7 +23,7 @@
  .endif
  _oarg=  ${_arg}
  .endfor
@@ -27,11 +23,9 @@ Index: freebsd-buildutils/src/share/mk/bsd.symver.mk
  
  # Look up ${VERSION_GEN} in ${_mpath}.
  _vgen=
-Index: freebsd-buildutils/src/usr.bin/make/make.1
-===================================================================
---- freebsd-buildutils.orig/src/usr.bin/make/make.1
-+++ freebsd-buildutils/src/usr.bin/make/make.1
-@@ -235,7 +235,7 @@ Multiple
+--- a/src/usr.bin/make/make.1
++++ b/src/usr.bin/make/make.1
+@@ -235,7 +235,7 @@
  .Fl m
  options can be specified to form a search path.
  This path will override the default system include path,
@@ -40,7 +34,7 @@ Index: freebsd-buildutils/src/usr.bin/make/make.1
  The system include path will always be appended to the search path used
  for "..."-style inclusions and makefile searches (see the
  .Fl I
-@@ -1721,7 +1721,7 @@ list of dependencies
+@@ -1721,7 +1721,7 @@
  object directory
  .It Pa sys.mk
  system makefile
@@ -49,10 +43,8 @@ Index: freebsd-buildutils/src/usr.bin/make/make.1
  default system makefile directory
  .It Pa /usr/share/doc/psd/12.make
  PMake tutorial
-Index: freebsd-buildutils/src/usr.bin/make/pathnames.h
-===================================================================
---- freebsd-buildutils.orig/src/usr.bin/make/pathnames.h
-+++ freebsd-buildutils/src/usr.bin/make/pathnames.h
+--- a/src/usr.bin/make/pathnames.h
++++ b/src/usr.bin/make/pathnames.h
 @@ -50,7 +50,7 @@
  #endif /* ! PATH_DEFSYSMK */
  

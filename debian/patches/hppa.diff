@@ -3,11 +3,9 @@ Subject: Do not use -fstack-protector on hppa/parisc arch.
 Bug-Debian: https://bugs.debian.org/758377
 Forwarded: not-needed
 
-Index: freebsd-buildutils/src/share/mk/bsd.sys.mk
-===================================================================
---- freebsd-buildutils.orig/src/share/mk/bsd.sys.mk
-+++ freebsd-buildutils/src/share/mk/bsd.sys.mk
-@@ -144,11 +144,12 @@ CXXFLAGS+=	 ${CXXFLAGS.gcc}
+--- a/src/share/mk/bsd.sys.mk
++++ b/src/share/mk/bsd.sys.mk
+@@ -144,11 +144,12 @@
  .endif # !EARLY_BUILD
  
  .if ${MK_SSP} != "no" && ${MACHINE_CPUARCH} != "ia64" && \
@@ -20,5 +18,5 @@ Index: freebsd-buildutils/src/share/mk/bsd.sys.mk
 -.endif # SSP && !IA64 && !ARM && !MIPS
 +.endif # SSP && !IA64 && !ARM && !MIPS && !HPPA && !ALPHA
  
- # Allow user-specified additional warning flags
- CFLAGS+=	${CWARNFLAGS}
+ # Allow user-specified additional warning flags and file specific flag
+ # overrides.
