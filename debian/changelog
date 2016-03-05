@@ -2,10 +2,12 @@ freebsd-buildutils (10.3~svn296373-1) UNRELEASED; urgency=medium
 
   * New upstream snapshot of 10.3-RC1
   * Mark freebsd-mk as Multi-Arch: foreign (thanks, Helmut Grohne!)
-  * Map Debian's kfreebsd-armhf to FreeBSD's armv6 MACHINE_ARCH
   * Actually use the proper build architecture compiler
+  * Map Debian's kfreebsd-armhf to FreeBSD's armv6 MACHINE_ARCH
   * Add *.test.mk files to freebsd-mk, allowing reverse-dependencies to
     use WITH_TESTS=yes
+  * Use relative path in manpage symlinks
+      - man_symlinks.diff
 
  -- Steven Chamberlain <steven@pyro.eu.org>  Sat, 05 Mar 2016 00:27:01 +0000
 
