@@ -5,6 +5,12 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+# Determine host architecture compiler
+DEB_HOST_GNU_TYPE	?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+ifeq ($(origin CC),default)
+CC := $(DEB_HOST_GNU_TYPE)-gcc
+endif
+
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
 DEB_BUILD_GNU_TYPE	:= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
@@ -73,7 +79,7 @@ export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
 	-D_GNU_SOURCE=1 -isystem /usr/include/freebsd
 # disabled due to #630907 (see also 20_libbsd_overlay.diff)
 # $(shell pkg-config --cflags libbsd-overlay)
-MAKE_BUILD_FLAGS = CC=gcc NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO NO_SHARED=NO
+MAKE_BUILD_FLAGS = CC=$(CC) NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO NO_SHARED=NO
 
 PMAKE_FLAGS = -m $(CURDIR)/src/share/mk
 PMAKE = \
