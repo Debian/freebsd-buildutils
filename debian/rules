@@ -25,6 +25,18 @@ else
 MACHINE_MULTIARCH	:= $(DEB_HOST_MULTIARCH)
 endif
 
+ifeq ($(DEB_HOST_ARCH_CPU), armhf)
+MACHINE_ARCH		:= armv6
+else
+MACHINE_ARCH		:= $(DEB_HOST_ARCH_CPU)
+endif
+
+ifeq ($(DEB_HOST_MULTIARCH), armhf)
+MACHINE_MULTIARCH	:= armv6
+else
+MACHINE_MULTIARCH	:= $(DEB_HOST_MULTIARCH)
+endif
+
 ifneq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
     export STRIPFLAG=
 endif
