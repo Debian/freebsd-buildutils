@@ -1,6 +1,7 @@
 freebsd-buildutils (10.3~svn296373-1) UNRELEASED; urgency=medium
 
   * New upstream snapshot of 10.3-RC1
+  * Mark freebsd-mk as Multi-Arch: foreign (thanks, Helmut Grohne!)
 
  -- Steven Chamberlain <steven@pyro.eu.org>  Sat, 05 Mar 2016 00:27:01 +0000
 

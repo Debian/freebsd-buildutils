@@ -37,6 +37,7 @@ Description: Utilities for building FreeBSD sources
 
 Package: freebsd-mk
 Architecture: all
+Multi-Arch: foreign
 Replaces: freebsd-buildutils (<< 10.0~svn259404-5~)
 Enhances: bmake
 Description: FreeBSD makefile templates for bmake
