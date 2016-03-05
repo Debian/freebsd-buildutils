@@ -1,4 +1,4 @@
-freebsd-buildutils (10.3~svn296373-1) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn296373-1) experimental; urgency=medium
 
   * New upstream snapshot of 10.3-RC1
   * Mark freebsd-mk as Multi-Arch: foreign (thanks, Helmut Grohne!)
