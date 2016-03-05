@@ -60,7 +60,12 @@ export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
 	-D_GNU_SOURCE=1 -isystem /usr/include/freebsd
 # disabled due to #630907 (see also 20_libbsd_overlay.diff)
 # $(shell pkg-config --cflags libbsd-overlay)
-MAKE_BUILD_FLAGS = CC=$(CC) NO_WERROR=1 NOGCCERROR=1 NOSHARED=NO NO_SHARED=NO
+MAKE_BUILD_FLAGS = \
+	CC=$(CC) \
+	NO_WERROR=1 \
+	NOGCCERROR=1 \
+	NOSHARED=NO \
+	NO_SHARED=NO
 
 PMAKE_FLAGS = -m $(CURDIR)/src/share/mk
 PMAKE = \
@@ -156,7 +161,8 @@ install: build
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/lib/freebsd ; \
 	done
 	$(PMAKE) -C build-tree/src/share/mk install \
-		DESTDIR=$(CURDIR)/debian/freebsd-mk BINDIR=/usr/share
+		DESTDIR=$(CURDIR)/debian/freebsd-mk BINDIR=/usr/share \
+		WITH_TESTS=yes
 
 	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm install \
 		DESTDIR=$(CURDIR)/debian/$(package) BINDIR=/usr/bin
