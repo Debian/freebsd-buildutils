@@ -38,8 +38,8 @@ major           := $(shell echo $(version) | sed -e 's/\..*//g')
 revision	:= $(shell echo $(full_version) | sed -e 's/^[^+-]*//g')
 
 #SVN		:= https://svn0.us-west.freebsd.org/base/release/$(version).0
-#SVN		:= https://svn0.us-west.freebsd.org/base/releng/$(version)
-SVN		:= https://svn0.us-west.freebsd.org/base/stable/$(major)
+SVN		:= https://svn0.us-west.freebsd.org/base/releng/$(version)
+#SVN		:= https://svn0.us-west.freebsd.org/base/stable/$(major)
 #SVN		:= https://svn0.us-west.freebsd.org/base/head
 
 SOURCE = freebsd-buildutils
