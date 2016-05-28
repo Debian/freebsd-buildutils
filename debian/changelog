@@ -1,5 +1,6 @@
-freebsd-buildutils (10.3~svn296373-2) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn296373-2) unstable; urgency=medium
 
+  * Upload to unstable
   * Use new preferred hostname for upstream SVN with HTTPS
     (svn.freebsd.org).
 
