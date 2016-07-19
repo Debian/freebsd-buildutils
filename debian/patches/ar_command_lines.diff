@@ -1,0 +1,33 @@
+Date: Tue, 19 Jul 2016 09:06:50 +0100
+From: Steven Chamberlain <stevenc@debian.org>
+Subject: make ar command lines visible in build log
+
+--- a/src/share/mk/bsd.lib.mk
++++ b/src/share/mk/bsd.lib.mk
+@@ -175,7 +175,7 @@
+ lib${LIB}.a: ${OBJS} ${STATICOBJS}
+ 	@${ECHO} building static ${LIB} library
+ 	@rm -f ${.TARGET}
+-	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
++	${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${OBJS} ${STATICOBJS} | tsort` ${ARADD}
+ 	${RANLIB} ${RANLIBFLAGS} ${.TARGET}
+ .endif
+ 
+@@ -188,7 +188,7 @@
+ lib${LIB}_p.a: ${POBJS}
+ 	@${ECHO} building profiled ${LIB} library
+ 	@rm -f ${.TARGET}
+-	@${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort` ${ARADD}
++	${AR} ${ARFLAGS} ${.TARGET} `NM='${NM}' lorder ${POBJS} | tsort` ${ARADD}
+ 	${RANLIB} ${RANLIBFLAGS} ${.TARGET}
+ .endif
+ 
+@@ -239,7 +239,7 @@
+ lib${LIB}_pic.a: ${SOBJS}
+ 	@${ECHO} building special pic ${LIB} library
+ 	@rm -f ${.TARGET}
+-	@${AR} ${ARFLAGS} ${.TARGET} ${SOBJS} ${ARADD}
++	${AR} ${ARFLAGS} ${.TARGET} ${SOBJS} ${ARADD}
+ 	${RANLIB} ${RANLIBFLAGS} ${.TARGET}
+ .endif
+ 

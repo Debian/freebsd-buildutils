@@ -1,6 +1,7 @@
 freebsd-buildutils (10.3~svn296373-3) UNRELEASED; urgency=medium
 
   * Update my email address in Uploaders
+  * Make `ar` command lines visible in the build log
 
  -- Steven Chamberlain <stevenc@debian.org>  Tue, 19 Jul 2016 09:08:38 +0100
 

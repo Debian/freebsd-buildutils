@@ -30,3 +30,4 @@ makefiles.diff
 #test
 hppa.diff
 man_symlinks.diff
+ar_command_lines.diff
