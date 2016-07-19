@@ -1,4 +1,4 @@
-freebsd-buildutils (10.3~svn296373-3) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn296373-3) unstable; urgency=medium
 
   * Update my email address in Uploaders
   * Make `ar` command lines visible in the build log
