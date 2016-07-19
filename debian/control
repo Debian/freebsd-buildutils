@@ -6,7 +6,7 @@ Uploaders:
  Aurelien Jarno <aurel32@debian.org>,
  Robert Millan <rmh@debian.org>,
  Steven Chamberlain <stevenc@debian.org>,
-Build-Depends: debhelper (>= 7), flex | flex-old, bison,
+Build-Depends: debhelper (>= 9), flex | flex-old, bison,
  libbsd-dev (>= 0.3.0),
  freebsd-glue (>= 0.2.20),
  bmake,
@@ -37,6 +37,7 @@ Description: Utilities for building FreeBSD sources
 
 Package: freebsd-mk
 Architecture: all
+Depends: ${misc:Depends}
 Multi-Arch: foreign
 Replaces: freebsd-buildutils (<< 10.0~svn259404-5~)
 Enhances: bmake
