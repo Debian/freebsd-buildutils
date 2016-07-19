@@ -15,7 +15,7 @@ Build-Depends: debhelper (>= 7), flex | flex-old, bison,
  libsbuf-dev,
 Vcs-Browser: http://anonscm.debian.org/viewvc/glibc-bsd/trunk/freebsd-buildutils/
 Vcs-Svn: svn://anonscm.debian.org/glibc-bsd/trunk/freebsd-buildutils/
-Standards-Version: 3.9.2
+Standards-Version: 3.9.8
 
 Package: freebsd-buildutils
 Architecture: any
