@@ -11,6 +11,10 @@ ifeq ($(origin CC),default)
 CC := $(DEB_HOST_GNU_TYPE)-gcc
 endif
 
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
 DEB_HOST_ARCH_CPU	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
@@ -54,7 +58,7 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 	BSD_MAKEFLAGS += -j$(NUMJOBS)
 endif
 
-export CFLAGS = -O2 -g -Wall -D_GNU_SOURCE \
+export CFLAGS += -O2 -g -Wall -D_GNU_SOURCE \
          -DMACHINE_ARCH='"$(MACHINE_ARCH)"' \
          -DMACHINE_MULTIARCH='"$(MACHINE_MULTIARCH)"' \
          -I$(CURDIR)/build-tree/src/sys \

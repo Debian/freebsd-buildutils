@@ -1,3 +1,11 @@
+freebsd-buildutils (10.3~svn296373-4) UNRELEASED; urgency=medium
+
+  * Add Build-Depends: dpkg-dev (>= 1.16.1.1) and use buildflags.mk
+    to set CFLAGS, respecting DEB_BUILD_OPTIONS flags such as noopt
+  * Enable hardening=+all, which includes PIE, relro and stack protector
+
+ -- Steven Chamberlain <stevenc@debian.org>  Tue, 19 Jul 2016 10:13:07 +0100
+
 freebsd-buildutils (10.3~svn296373-3) unstable; urgency=medium
 
   * Update my email address in Uploaders
