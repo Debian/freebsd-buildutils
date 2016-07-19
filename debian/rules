@@ -5,21 +5,27 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+full_version	:= $(shell dpkg-parsechangelog | grep ^Version: | sed -e 's/^.*: //g')
+tar_version	:= $(shell echo $(full_version) | sed -e 's/-.*//g')
+svn_revision	:= $(shell echo $(full_version) | sed -e 's/.*~svn\([0-9]*\)-[0-9]*/\1/g' -e 's/^$(full_version)$$/HEAD/g')
+version		:= $(shell echo $(full_version) | sed -e 's/[~+-].*//g')
+pversion	:= $(shell echo $(version) | sed -e 's/\./_/g')
+major           := $(shell echo $(version) | sed -e 's/\..*//g')
+revision	:= $(shell echo $(full_version) | sed -e 's/^[^+-]*//g')
+
+include /usr/share/dpkg/architecture.mk
+
 # Determine host architecture compiler
-DEB_HOST_GNU_TYPE	?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 ifeq ($(origin CC),default)
 CC := $(DEB_HOST_GNU_TYPE)-gcc
 endif
 
+# Use hardening flags
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# Pre-define CFLAGS, for hardening, debug and optimisation level
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/buildflags.mk
-
-# These are used for cross-compiling and for saving the configure script
-# from having to guess our platform (since we know it already)
-DEB_HOST_ARCH_CPU	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
-DEB_HOST_MULTIARCH	?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
-DEB_HOST_ARCH_OS	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 MACHINE_ARCH		:= $(DEB_HOST_ARCH_CPU)
 MACHINE_MULTIARCH	:= $(DEB_HOST_MULTIARCH)
@@ -31,14 +37,6 @@ endif
 ifneq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
     export STRIPFLAG=
 endif
-
-full_version	:= $(shell dpkg-parsechangelog | grep ^Version: | sed -e 's/^.*: //g')
-tar_version	:= $(shell echo $(full_version) | sed -e 's/-.*//g')
-svn_revision	:= $(shell echo $(full_version) | sed -e 's/.*~svn\([0-9]*\)-[0-9]*/\1/g' -e 's/^$(full_version)$$/HEAD/g')
-version		:= $(shell echo $(full_version) | sed -e 's/[~+-].*//g')
-pversion	:= $(shell echo $(version) | sed -e 's/\./_/g')
-major           := $(shell echo $(version) | sed -e 's/\..*//g')
-revision	:= $(shell echo $(full_version) | sed -e 's/^[^+-]*//g')
 
 SVN_BASE	:= https://svn.freebsd.org/base
 #SVN		:= $(SVN_BASE)/release/$(version).0
