@@ -31,7 +31,7 @@ MACHINE_ARCH		:= $(DEB_HOST_ARCH_CPU)
 MACHINE_MULTIARCH	:= $(DEB_HOST_MULTIARCH)
 
 ifeq ($(DEB_HOST_ARCH_CPU), arm)
-ifneq (,$(findstring armhf,$(DEB_HOST_ARCH))
+ifneq (,$(findstring armhf,$(DEB_HOST_ARCH)))
 MACHINE_ARCH		:= armv6hf
 else
 MACHINE_ARCH		:= armv6
