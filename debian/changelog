@@ -1,8 +1,8 @@
-freebsd-buildutils (10.3~svn296373-5) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn296373-5) unstable; urgency=medium
 
   * Fix typo in debian/rules causing FTBFS on arm* architectures
 
- -- Steven Chamberlain <stevenc@debian.org>  Tue, 29 Nov 2016 16:59:32 +0000
+ -- Steven Chamberlain <stevenc@debian.org>  Tue, 29 Nov 2016 17:00:33 +0000
 
 freebsd-buildutils (10.3~svn296373-4) unstable; urgency=medium
 
