@@ -31,11 +31,35 @@ MACHINE_ARCH		:= $(DEB_HOST_ARCH_CPU)
 MACHINE_MULTIARCH	:= $(DEB_HOST_MULTIARCH)
 
 ifeq ($(DEB_HOST_ARCH_CPU), arm)
+ifneq (,$(findstring armhf,$(DEB_HOST_ARCH))
+MACHINE_ARCH		:= armv6hf
+else
 MACHINE_ARCH		:= armv6
+endif
 endif
 
 ifneq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
     export STRIPFLAG=
+endif
+
+EXTRA_CFLAGS = \
+	-D_GNU_SOURCE -pipe -Wall \
+        -DMACHINE_ARCH='\"$(MACHINE_ARCH)\"' \
+        -DMACHINE_MULTIARCH='\"$(MACHINE_MULTIARCH)\"' \
+        -I$(CURDIR)/build-tree/src/sys \
+	-isystem /usr/include/freebsd \
+	-fPIC \
+	$(CPPFLAGS) \
+	$(NULL)
+# disabled due to #630907 (see also 20_libbsd_overlay.diff)
+# $(shell pkg-config --cflags libbsd-overlay)
+CFLAGS	+= $(EXTRA_CFLAGS)
+
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+
+	# Do not mess with MAKEFLAGS until we transfer control to BSD make (see below)
+	BSD_MAKEFLAGS += -j$(NUMJOBS)
 endif
 
 SVN_BASE	:= https://svn.freebsd.org/base
@@ -49,31 +73,18 @@ ORIGDIR = $(SOURCE)-$(tar_version)
 TARNAME = $(SOURCE)_$(tar_version).orig.tar.xz
 SOURCE_DATE_EPOCH ?= $(shell date -d "$$(dpkg-parsechangelog -SDate)" +%s)
 
-ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-	NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-
-	# Do not mess with MAKEFLAGS until we transfer control to BSD make (see below)
-	BSD_MAKEFLAGS += -j$(NUMJOBS)
-endif
-
-export CFLAGS += -O2 -g -Wall -D_GNU_SOURCE \
-         -DMACHINE_ARCH='"$(MACHINE_ARCH)"' \
-         -DMACHINE_MULTIARCH='"$(MACHINE_MULTIARCH)"' \
-         -I$(CURDIR)/build-tree/src/sys \
-	-D_GNU_SOURCE=1 -isystem /usr/include/freebsd
-# disabled due to #630907 (see also 20_libbsd_overlay.diff)
-# $(shell pkg-config --cflags libbsd-overlay)
-MAKE_BUILD_FLAGS = \
-	CC=$(CC) \
-	NO_WERROR=1 \
-	NOGCCERROR=1 \
-	NOSHARED=NO \
-	NO_SHARED=NO
-
-PMAKE_FLAGS = -m $(CURDIR)/src/share/mk
-PMAKE = \
+PMAKE_COMMON = \
 	MAKEFLAGS=$(BSD_MAKEFLAGS) \
-	bmake $(PMAKE_FLAGS)
+	NO_WERROR=1 NOGCCERROR=1 \
+	NOSHARED=NO NO_SHARED=NO NO_PROFILE=1 \
+	bmake \
+	CC=$(CC) \
+	-m $(CURDIR)/src/share/mk \
+	$(NULL)
+PMAKE = \
+	CFLAGS="$(CFLAGS)" \
+	$(PMAKE_COMMON)
+
 YACC = byacc
 
 package = $(SOURCE)
@@ -126,26 +137,26 @@ build-indep: build-stamp
 build-stamp: unpack-stamp
 	dh_testdir
 
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/make
+	$(PMAKE) -C build-tree/src/usr.bin/make
 
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/cksum
+	$(PMAKE) -C build-tree/src/usr.bin/cksum
 
 	cd build-tree/src/usr.bin/lex ; \
 		$(PMAKE) bootstrap ; \
-		$(PMAKE) $(MAKE_BUILD_FLAGS) NO_PROFILE=1 NO_INSTALLLIB=1
+		$(PMAKE) NO_INSTALLLIB=1
 
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/mkdep
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/mtree
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/file2c
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.bin/brandelf
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/sys/dev/aic7xxx/aicasm
+	$(PMAKE) -C build-tree/src/usr.bin/mkdep
+	$(PMAKE) -C build-tree/src/usr.sbin/mtree
+	$(PMAKE) -C build-tree/src/usr.bin/file2c
+	$(PMAKE) -C build-tree/src/usr.bin/brandelf
+	$(PMAKE) -C build-tree/src/sys/dev/aic7xxx/aicasm
 ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
 	# Not portable yet. Maybe someday...
-	$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/kldxref
+	$(PMAKE) -C build-tree/src/usr.sbin/kldxref
 endif
 
 	PATH=$(CURDIR)/build-tree/src/usr.bin/file2c:$(PATH) \
-		$(PMAKE) $(MAKE_BUILD_FLAGS) -C build-tree/src/usr.sbin/config
+		$(PMAKE) -C build-tree/src/usr.sbin/config
 
 	touch build-stamp
 

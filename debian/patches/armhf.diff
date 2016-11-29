@@ -1,0 +1,13 @@
+--- a/src/share/mk/bsd.cpu.mk
++++ b/src/share/mk/bsd.cpu.mk
+@@ -261,6 +261,10 @@
+ _CPUCFLAGS += -mfloat-abi=softfp
+ .endif
+ 
++.if ${MACHINE_ARCH} == "armv6hf"
++_CPUCFLAGS += -mfloat-abi=hard -mfpu=vfp
++.endif
++
+ # NB: COPTFLAGS is handled in /usr/src/sys/conf/kern.pre.mk
+ 
+ .if !defined(NO_CPU_CFLAGS)

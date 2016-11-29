@@ -31,3 +31,4 @@ makefiles.diff
 hppa.diff
 man_symlinks.diff
 ar_command_lines.diff
+armhf.diff

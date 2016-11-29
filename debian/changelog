@@ -4,6 +4,7 @@ freebsd-buildutils (10.3~svn296373-4) UNRELEASED; urgency=medium
     to set CFLAGS, respecting DEB_BUILD_OPTIONS flags such as noopt
   * Enable hardening=+all, which includes PIE, relro and stack protector
   * Use architecture.mk instead of individual calls to dpkg-architecture
+  * Create a new MACHINE_ARCH armv6hf for linux armhf and kfreebsd-armhf
 
  -- Steven Chamberlain <stevenc@debian.org>  Tue, 19 Jul 2016 10:13:07 +0100
 
