@@ -27,7 +27,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, bsdmainutils, unzip, patchutils,
 # Not strictly required anymore. But let's drag it in for now, to avoid breaking
 # expectations.
  freebsd-mk,
-Conflicts: freebsd5-buildutils, freebsd6-buildutils
+Conflicts: freebsd5-buildutils, freebsd6-buildutils, flex-old
 Provides: freebsd6-buildutils, freebsd7-buildutils
 Description: Utilities for building FreeBSD sources
  This package contains the FreeBSD counterparts of some standard build
