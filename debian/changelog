@@ -1,7 +1,7 @@
-freebsd-buildutils (10.3~svn296373-6) UNRELEASED; urgency=medium
+freebsd-buildutils (10.3~svn296373-6) unstable; urgency=medium
 
   * Declare Conflicts: flex-old due to freebsd-buildutils shipping a
-    libfl.a for freebsd-lex
+    libfl.a for freebsd-lex (Closes: #846578)
 
  -- Steven Chamberlain <stevenc@debian.org>  Sun, 08 Jan 2017 22:00:58 +0000
 
