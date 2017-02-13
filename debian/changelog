@@ -1,3 +1,12 @@
+freebsd-buildutils (10.3~svn296373-7) UNRELEASED; urgency=medium
+
+  * Build fmtree with support for MD5, SHA1, RMD160, SHA256 checksums
+    (Closes: #854184, #855072)
+    - add Build-Depends: libmd-dev
+    - refresh 22_ld_as_needed.diff
+
+ -- Steven Chamberlain <stevenc@debian.org>  Mon, 13 Feb 2017 21:25:28 +0000
+
 freebsd-buildutils (10.3~svn296373-6) unstable; urgency=medium
 
   * Declare Conflicts: flex-old due to freebsd-buildutils shipping a

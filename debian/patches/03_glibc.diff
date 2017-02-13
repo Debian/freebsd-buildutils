@@ -9,15 +9,3 @@
  	printf("\n");
  }
  
---- a/src/usr.sbin/mtree/Makefile
-+++ b/src/usr.sbin/mtree/Makefile
-@@ -10,9 +10,6 @@
- SRCS=	compare.c crc.c create.c excludes.c misc.c mtree.c spec.c verify.c
- SRCS+=	specspec.c
- 
--CFLAGS+= -DMD5 -DSHA1 -DRMD160 -DSHA256
--DPADD=	${LIBMD}
--LDADD=	-lmd
- 
- .if ${MK_NMTREE} == "no"
- LINKS=	${BINDIR}/fmtree ${BINDIR}/mtree
