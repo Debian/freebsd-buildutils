@@ -1,0 +1,17 @@
+Author: Logan Rosen <logan@ubuntu.com>
+Description: Prototype setmode
+Bug-Debian: https://bugs.debian.org/819145
+
+Index: b/src/usr.sbin/mtree/spec.c
+===================================================================
+--- a/src/usr.sbin/mtree/spec.c
++++ b/src/usr.sbin/mtree/spec.c
+@@ -49,6 +49,8 @@
+ #include "mtree.h"
+ #include "extern.h"
+ 
++extern void *setmode(const char *mode_str);
++
+ int lineno;				/* Current spec line number. */
+ 
+ static void	 set(char *, NODE *);

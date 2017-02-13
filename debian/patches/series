@@ -22,6 +22,7 @@ kldxref_abort_on_error.diff
 disable_wsystem_headers.diff
 nostrip.diff
 config_ldflags.diff
+prototype-setmode.diff
 
 # Patches that are likely to be Debian-specific
 avoid_defsyspath_collision.diff

@@ -4,6 +4,7 @@ freebsd-buildutils (10.3~svn296373-7) UNRELEASED; urgency=medium
     (Closes: #854184, #855072)
     - add Build-Depends: libmd-dev
     - refresh 22_ld_as_needed.diff
+  * Merge patch from Ubuntu: prototype-setmode.diff (Logan Rosen)
 
  -- Steven Chamberlain <stevenc@debian.org>  Mon, 13 Feb 2017 21:25:28 +0000
 
