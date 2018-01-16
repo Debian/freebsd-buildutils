@@ -18,9 +18,9 @@ Build-Depends: debhelper (>= 9),
  byacc (>= 20120115~),
 # for freebsd-config
  libsbuf-dev,
-Vcs-Browser: http://anonscm.debian.org/viewvc/glibc-bsd/trunk/freebsd-buildutils/
-Vcs-Svn: svn://anonscm.debian.org/glibc-bsd/trunk/freebsd-buildutils/
 Standards-Version: 3.9.8
+Vcs-Browser: https://salsa.debian.org/kfreebsd-team/freebsd-buildutils
+Vcs-Git: https://salsa.debian.org/kfreebsd-team/freebsd-buildutils.git
 
 Package: freebsd-buildutils
 Architecture: any
